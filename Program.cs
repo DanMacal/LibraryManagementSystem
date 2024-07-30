@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagementSysyem.Models;
+using System;
 
 namespace ManagementSystem
 {
@@ -6,7 +7,8 @@ namespace ManagementSystem
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
+            User daniel = new User (423, "Daniel", "daniel.mca@gmai.com");
+            Console.WriteLine(daniel);
 
             Console.ReadKey();
         }
