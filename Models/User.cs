@@ -8,13 +8,13 @@ namespace LibraryManagementSysyem.Models
 {
     class User
     {
-        public int ID { get; set; }
+        public int UserID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
 
-        public User(int id, string name, string email)
+        public User(int userid, string name, string email)
         {
-            ID = id;
+            UserID = userid;
             Name = name;
             Email = email;
         }
@@ -23,7 +23,7 @@ namespace LibraryManagementSysyem.Models
 
         public override string ToString()
         {
-            return $"User: {Name}\nID: {ID}\nEmail: {Email}";
+            return $"User: {Name}\nID: {UserID}\nEmail: {Email}";
         }
     }
 }
