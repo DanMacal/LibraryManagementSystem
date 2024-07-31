@@ -8,15 +8,15 @@ namespace LibraryManagementSysyem.Models
 {
     class Book
     {
-        public int ISBN { get; set; }
         public string Title { get; set; }
+        public int ISBN { get; set; }
         public string Author { get; set; }
         public Genre Genre { get; set; }
 
-        public Book(int isbm, string title, string author, Genre genre)
+        public Book(string title, int isbm, string author, Genre genre)
         {
-            ISBN = isbm;
             Title = title;
+            ISBN = isbm;
             Author = author;
             Genre = genre;
         }
