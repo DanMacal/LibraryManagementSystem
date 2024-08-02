@@ -52,6 +52,24 @@ namespace LibraryManagementSysyem.Services
             }
         }
 
+        public void UpdateBook(int isbn, Book updatedBook)
+        {
+            var book = Books.Find(b => b.ISBN == isbn);
+
+            if (book != null)
+            {
+                book.Title = updatedBook.Title;
+                book.Author = updatedBook.Author;
+                book.Genre = updatedBook.Genre;
+
+                Console.WriteLine($"Book with ISBN {isbn} has been successfully updated.");
+            }
+            else
+            {
+                Console.WriteLine("Book not found.");
+            }
+        }
+
 
         public void ListBooks()
         {

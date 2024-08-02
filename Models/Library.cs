@@ -53,10 +53,16 @@ namespace LibraryManagementSysyem.Models
             bookService.RemoveBook();
         }
 
+        public void UpdateBook()
+        {
+            bookService.RemoveBook();
+        }
+
         public void ListBooks()
         {
             bookService.ListBooks();
         }
+
 
         //User
         public void AddUser(User user)
