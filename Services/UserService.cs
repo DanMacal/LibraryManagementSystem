@@ -57,7 +57,6 @@ namespace LibraryManagementSysyem.Services
             if (user != null)
             {
                 user.Name = updatedUser.Name;
-                user.Email = updatedUser.Email;
 
                 Console.WriteLine($"User with ID {userId} has been successfully updated.");
             }

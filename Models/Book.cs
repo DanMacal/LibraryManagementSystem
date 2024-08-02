@@ -21,15 +21,33 @@ namespace LibraryManagementSysyem.Models
             Genre = genre;
         }
 
-        public void UpdateBook(string title, int isbn, string author, Genre genre)
+
+        public void UpdateBookDetails(int isbn, string author, Genre genre)
         {
-            Title = title;
             ISBN = isbn;
             Author = author;
             Genre = genre;
 
             Console.WriteLine($"Book '{Title}' has been successfully updated.");
         }
+
+
+        public void UpdateBookDetails(string author, Genre genre)
+        {
+            Author = author;
+            Genre = genre;
+
+            Console.WriteLine($"Book '{Title}' has been successfully updated.");
+        }
+
+
+        public void UpdateBookDetails(Genre genre)
+        {
+            Genre = genre;
+
+            Console.WriteLine($"Book '{Title}' has been successfully updated.");
+        }
+
 
         public override string ToString()
         {

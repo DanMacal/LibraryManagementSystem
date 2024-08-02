@@ -11,9 +11,6 @@ namespace ManagementSystem
             Console.WriteLine(daniel);
             Console.WriteLine();
 
-            User tanner = new User(423, "Tanner", "tanner.asa@gmai.com");
-            Console.WriteLine(daniel);
-            Console.WriteLine();
 
             Book GOT1 = new Book("A Clash of Kings", 12313, "George R. R. Martin", Genre.Science_Fiction);
             Console.WriteLine(GOT1);
@@ -22,7 +19,12 @@ namespace ManagementSystem
 
             List<Book> books = new List<Book>() { GOT1, GOT2 };
 
-            List<User> users = new List<User>() {daniel, tanner };
+            List<User> users = new List<User>() {daniel };
+            Console.WriteLine();
+
+            GOT1.UpdateBookDetails(123, "Deez", Genre.Humor);
+            Console.WriteLine();
+            Console.WriteLine(GOT1);
 
             Console.ReadKey();
         }

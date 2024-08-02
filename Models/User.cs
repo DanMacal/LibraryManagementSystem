@@ -19,18 +19,19 @@ namespace LibraryManagementSysyem.Models
             Email = email;
         }
 
-        public void UpdateUserDetails(int userId, string name, string email)
+        public void UpdateUser(string name, string email)
         {
-            if (UserID == userId)
-            {
-                Name = name;
-                Email = email;
-                Console.WriteLine($"User with ID {UserID} has been successfully updated.");
-            }
-            else
-            {
-                Console.WriteLine("User ID mismatch. Update failed.");
-            }
+            Name = name;
+            Email = email;
+
+            Console.WriteLine($"User with ID {UserID} has been successfully updated.");
+        }
+
+        public void UpdateUser(string email)
+        {
+            Email = email;
+
+            Console.WriteLine($"User with ID {UserID} has been successfully updated.");
         }
 
 
