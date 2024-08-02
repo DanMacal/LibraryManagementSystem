@@ -50,6 +50,23 @@ namespace LibraryManagementSysyem.Services
             }
         }
 
+        public void UpdateUser(int userId, User updatedUser)
+        {
+            var user = Users.Find(u => u.UserID == userId);
+
+            if (user != null)
+            {
+                user.Name = updatedUser.Name;
+                user.Email = updatedUser.Email;
+
+                Console.WriteLine($"User with ID {userId} has been successfully updated.");
+            }
+            else
+            {
+                Console.WriteLine("User not found.");
+            }
+        }
+
         public void ListUsers()
         {
             Console.Clear();
