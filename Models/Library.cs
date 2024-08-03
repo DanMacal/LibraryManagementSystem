@@ -38,6 +38,7 @@ namespace LibraryManagementSysyem.Models
             Users = users;
         }
 
+        // Business Logic
         private readonly BookService bookService;
         private readonly UserService userService;
 
@@ -53,10 +54,11 @@ namespace LibraryManagementSysyem.Models
             bookService.RemoveBook();
         }
 
-        public void UpdateBook()
+        public void UpdateBook(int isbn, Book updatedBook)
         {
-            bookService.RemoveBook();
+            bookService.UpdateBook(isbn, updatedBook);
         }
+
 
         public void ListBooks()
         {
@@ -73,6 +75,11 @@ namespace LibraryManagementSysyem.Models
         public void RemoveUser()
         {
             userService.RemoveUser();
+        }
+
+        public void UpdateUser(int userId, User updatedUser)
+        {
+            userService.UpdateUser(userId, updatedUser);
         }
 
         public void ListUsers()
