@@ -22,7 +22,7 @@ namespace LibraryManagementSysyem.Services
             if (IsValidBook(book))
             {
                 Books.Add(book);
-                Console.WriteLine($" '{book.Title}' has been successfully added.");
+                Console.WriteLine($"'{book.Title}' has been successfully added.");
             }
             else
             {

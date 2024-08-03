@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LibraryManagementSysyem.Services
 {
@@ -21,7 +22,7 @@ namespace LibraryManagementSysyem.Services
             if (IsValidUser(user))
             {
                 Users.Add(user);
-                Console.WriteLine($"{user} has been successfully added.");
+                Console.WriteLine($"'{user.Name}' has been successfully added.");
             }
             else
             {
@@ -68,7 +69,6 @@ namespace LibraryManagementSysyem.Services
 
         public void ListUsers()
         {
-            Console.Clear();
             Console.WriteLine("Users in Library:");
 
             if (Users.Count == 0)
@@ -77,10 +77,7 @@ namespace LibraryManagementSysyem.Services
             }
             else
             {
-                for (int i = 0; i < Users.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {Users[i]}");
-                }
+                Users.ForEach(user => Console.WriteLine(user.Name));
             }
         }
 
