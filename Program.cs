@@ -7,24 +7,13 @@ namespace ManagementSystem
     {
         static void Main(string[] args)
         {
-            User daniel = new User (423, "Daniel", "daniel.mca@gmai.com");
-            Console.WriteLine(daniel);
+            var library = new Library();
+
+            library.AddBook(new Book("A Game of Thrones", 0_553_10354_7, "George R. R. Martin", Genre.Fantasy));
+            library.AddBook(new Book("A Clash of Kings",  0_553_10803_4, "George R. R. Martin",Genre.Fantasy));
             Console.WriteLine();
 
-
-            Book GOT1 = new Book("A Clash of Kings", 12313, "George R. R. Martin", Genre.Science_Fiction);
-            Console.WriteLine(GOT1);
-
-            Book GOT2 = new Book("A Storm of Swords", 45433, "George R. R. Martin", Genre.Science_Fiction);
-
-            List<Book> books = new List<Book>() { GOT1, GOT2 };
-
-            List<User> users = new List<User>() {daniel };
-            Console.WriteLine();
-
-            GOT1.UpdateBookDetails(123, "Deez", Genre.Humor);
-            Console.WriteLine();
-            Console.WriteLine(GOT1);
+            library.ListBooks(); 
 
             Console.ReadKey();
         }

@@ -12,38 +12,44 @@ namespace LibraryManagementSysyem.Models
         public List<Book> Books { get; set; }
         public List<User> Users { get; set; }
 
-
-        //Default
-        public Library()
-        {
-            Books = new List<Book>();
-            Users = new List<User>();
-        }
-
-        public Library(Book books)
-        {
-            Books = new List<Book>() { books };
-            Users = new List<User>();
-        }
-
-        public Library(User users)
-        {
-            Books = new List<Book>();
-            Users = new List<User>() { users };
-        }
-
-        public Library(List<Book> books, List<User> users)
-        {
-            Books = books;
-            Users = users;
-        }
-
         // Business Logic
         private readonly BookService bookService;
         private readonly UserService userService;
 
+        public Library()
+        {
+            Books = new List<Book>();
+            Users = new List<User>();
+            bookService = new BookService(Books);
+            userService = new UserService(Users);
+        }
 
-        //Book
+        public Library(Book book)
+        {
+            Books = new List<Book> { book };
+            Users = new List<User>();
+            bookService = new BookService(Books);
+            userService = new UserService(Users);
+        }
+
+        public Library(User user)
+        {
+            Books = new List<Book>();
+            Users = new List<User> { user };
+            bookService = new BookService(Books);
+            userService = new UserService(Users);
+        }
+
+        public Library(List<Book> books, List<User> users)
+        {
+            Books = books ?? new List<Book>();
+            Users = users ?? new List<User>();
+            bookService = new BookService(Books);
+            userService = new UserService(Users);
+        }
+
+
+        // Book methods
         public void AddBook(Book book)
         {
             bookService.AddBook(book);
@@ -59,14 +65,13 @@ namespace LibraryManagementSysyem.Models
             bookService.UpdateBook(isbn, updatedBook);
         }
 
-
         public void ListBooks()
         {
             bookService.ListBooks();
         }
 
 
-        //User
+        // User methods
         public void AddUser(User user)
         {
             userService.AddUser(user);

@@ -22,7 +22,7 @@ namespace LibraryManagementSysyem.Services
             if (IsValidBook(book))
             {
                 Books.Add(book);
-                Console.WriteLine($"{book} has been successfully added.");
+                Console.WriteLine($" '{book.Title}' has been successfully added.");
             }
             else
             {
@@ -73,7 +73,6 @@ namespace LibraryManagementSysyem.Services
 
         public void ListBooks()
         {
-            Console.Clear();
             Console.WriteLine("Books in Library:");
 
             if (Books.Count == 0)
@@ -82,10 +81,7 @@ namespace LibraryManagementSysyem.Services
             }
             else
             {
-                for (int i = 0; i < Books.Count; i++)
-                {
-                    Console.WriteLine($"{i + 1}. {Books[i]}");
-                }
+                Books.ForEach(book => Console.WriteLine(book.Title));
             }
         }
 
