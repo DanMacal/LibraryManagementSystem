@@ -19,19 +19,28 @@ namespace LibraryManagementSysyem.Models
             Email = email;
         }
 
-        public void UpdateUser(string name, string email)
+        public void UpdateUserDetails(string name, string email)
         {
             Name = name;
             Email = email;
 
-            Console.WriteLine($"User with ID {UserID} has been successfully updated.");
+            Console.WriteLine($"User's details with ID {UserID} has been successfully updated.");
         }
 
-        public void UpdateUser(string email)
+
+        public void UpdateUserName(string name)
+        {
+            Name = name;
+
+            Console.WriteLine($"User's name with ID {UserID} has been successfully updated.");
+        }
+            
+
+        public void UpdateUserEmail(string email)
         {
             Email = email;
 
-            Console.WriteLine($"User with ID {UserID} has been successfully updated.");
+            Console.WriteLine($"User's email with ID {UserID} has been successfully updated.");
         }
 
 
