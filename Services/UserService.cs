@@ -17,6 +17,7 @@ namespace LibraryManagementSysyem.Services
             Users = users;
         }
 
+
         public void AddUser(User user)
         {
             if (IsValidUser(user))
@@ -29,6 +30,38 @@ namespace LibraryManagementSysyem.Services
                 Console.WriteLine("Please enter a valid user.");
             }
         }
+
+
+        public User SearchUser(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return null;
+            }
+
+            return Users.Find(u =>
+                u.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                u.Email.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
+            );
+        }
+
+        public void UpdateUser(string name, User updatedUser)
+        {
+            var user = Users.Find(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+
+            if (user != null)
+            {
+                user.Name = updatedUser.Name;
+                user.Email = updatedUser.Email;
+
+                Console.WriteLine($"User with name '{name}' has been successfully updated.");
+            }
+            else
+            {
+                Console.WriteLine("User not found.");
+            }
+        }
+
 
         public void RemoveUser()
         {
@@ -51,21 +84,6 @@ namespace LibraryManagementSysyem.Services
             }
         }
 
-        public void UpdateUser(int userId, User updatedUser)
-        {
-            var user = Users.Find(u => u.UserID == userId);
-
-            if (user != null)
-            {
-                user.Name = updatedUser.Name;
-
-                Console.WriteLine($"User with ID {userId} has been successfully updated.");
-            }
-            else
-            {
-                Console.WriteLine("User not found.");
-            }
-        }
 
         public void ListUsers()
         {
@@ -80,6 +98,7 @@ namespace LibraryManagementSysyem.Services
                 Users.ForEach(user => Console.WriteLine(user.Name));
             }
         }
+
 
         private bool IsValidUser(User user)
         {

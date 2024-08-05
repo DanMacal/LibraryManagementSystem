@@ -31,6 +31,40 @@ namespace LibraryManagementSysyem.Services
         }
 
 
+        public Book SearchBook(string query)
+        {
+            if (string.IsNullOrWhiteSpace(query))
+            {
+                return null;
+            }
+
+            return Books.Find(b =>
+                b.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                b.Author.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
+                b.Genre.ToString().IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
+            );
+        }
+
+
+        public void UpdateBook(string title, Book updatedBook)
+        {
+            var book = Books.Find(b => b.Title == title);
+
+            if (book != null)
+            {
+                book.Title = updatedBook.Title;
+                book.Author = updatedBook.Author;
+                book.Genre = updatedBook.Genre;
+
+                Console.WriteLine($"Book with ISBN {title} has been successfully updated.");
+            }
+            else
+            {
+                Console.WriteLine("Book not found.");
+            }
+        }
+
+
         public void RemoveBook()
         {
             ListBooks();
@@ -49,24 +83,6 @@ namespace LibraryManagementSysyem.Services
             else
             {
                 Console.WriteLine("Please enter a valid book number.");
-            }
-        }
-
-        public void UpdateBook(int isbn, Book updatedBook)
-        {
-            var book = Books.Find(b => b.ISBN == isbn);
-
-            if (book != null)
-            {
-                book.Title = updatedBook.Title;
-                book.Author = updatedBook.Author;
-                book.Genre = updatedBook.Genre;
-
-                Console.WriteLine($"Book with ISBN {isbn} has been successfully updated.");
-            }
-            else
-            {
-                Console.WriteLine("Book not found.");
             }
         }
 

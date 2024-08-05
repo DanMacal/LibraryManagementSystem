@@ -55,14 +55,19 @@ namespace LibraryManagementSysyem.Models
             bookService.AddBook(book);
         }
 
+        public Book SearchBook(string query)
+        {
+            return bookService.SearchBook(query);
+        }
+
+        public void UpdateBook(string title, Book updatedBook)
+        {
+            bookService.UpdateBook(title, updatedBook);
+        }
+
         public void RemoveBook()
         {
             bookService.RemoveBook();
-        }
-
-        public void UpdateBook(int isbn, Book updatedBook)
-        {
-            bookService.UpdateBook(isbn, updatedBook);
         }
 
         public void ListBooks()
@@ -77,14 +82,20 @@ namespace LibraryManagementSysyem.Models
             userService.AddUser(user);
         }
 
+        public User SearchUser(string query)
+        {
+            return userService.SearchUser(query);
+        }
+
+        public void UpdateUser(string name, User updatedUser)
+        {
+            userService.UpdateUser(name, updatedUser);
+        }
+
+
         public void RemoveUser()
         {
             userService.RemoveUser();
-        }
-
-        public void UpdateUser(int userId, User updatedUser)
-        {
-            userService.UpdateUser(userId, updatedUser);
         }
 
         public void ListUsers()
