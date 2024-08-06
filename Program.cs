@@ -33,6 +33,12 @@ namespace ManagementSystem
 
             library.UpdateUser("Danny", daniel);
             library.ListUsers();
+            Console.WriteLine();
+
+            BorrowTransaction book1 = new BorrowTransaction(213, 133, GOT1,DateTime.Now, DateTime.Now);
+            Console.WriteLine(book1);
+
+            book1.BorrowBook();
 
             Console.ReadKey();
         }
