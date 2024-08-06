@@ -11,6 +11,7 @@ namespace LibraryManagementSysyem.Models
     {
         public List<Book> Books { get; set; }
         public List<User> Users { get; set; }
+        public List<BorrowTransaction> Transactions { get; set; } = new List<BorrowTransaction>();
 
         // Business Logic
         private readonly BookService bookService;

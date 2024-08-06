@@ -11,6 +11,7 @@ namespace LibraryManagementSysyem.Models
         public int UserID { get; set; }
         public string Name { get; set; }
         public string Email { get; set; }
+        public List<BorrowTransaction> BorrowedBooks { get; set; } = new List<BorrowTransaction>();
 
         public User(int userid, string name, string email)
         {

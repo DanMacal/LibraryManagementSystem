@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagementSysyem.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -7,7 +8,7 @@ using System.Transactions;
 
 namespace LibraryManagementSysyem.Models
 {
-    class BorrowTransaction
+    class BorrowTransaction : IBorrowable
     {
         public int TransactionID { get; set; }
         public int UserID { get; set; }
@@ -15,24 +16,29 @@ namespace LibraryManagementSysyem.Models
         public DateTime BorrowDate { get; set; }
         public DateTime? ReturnDate { get; set; }
 
-        public BorrowTransaction(int transactionid, int userid, Book borrowedbook, DateTime borrowdate, DateTime? returnDate)
+        public BorrowTransaction() { }
+
+        public BorrowTransaction(int transactionid, int userid, Book borrowedBook, DateTime borrowDate, DateTime? returnDate = null)
         {
             TransactionID = transactionid;
             UserID = userid;
-            BorrowedBook = borrowedbook;
-            BorrowDate = borrowdate;
+            BorrowedBook = borrowedBook;
+            BorrowDate = borrowDate;
             ReturnDate = returnDate;
         }
-        
+
 
         public void BorrowBook()
         {
-            // Yo
+            BorrowDate = DateTime.Now;
+            Console.WriteLine($"{BorrowedBook.Title} borrowed by User {UserID} on {BorrowDate}");
         }
 
+
         public void ReturnBook()
-        {
-            // Yo
+        { 
+            ReturnDate = DateTime.Now;
+            Console.WriteLine($"{BorrowedBook.Title} returned by User {UserID} on {ReturnDate}");
         }
 
 

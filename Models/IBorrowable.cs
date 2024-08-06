@@ -1,4 +1,5 @@
-﻿using System;
+﻿using LibraryManagementSysyem.Services;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +7,9 @@ using System.Threading.Tasks;
 
 namespace LibraryManagementSysyem.Models
 {
-    interface IBorrowable
+    public interface IBorrowable
     {
-        public void BorrowBook();
-        public void ReturnBook();
+        void BorrowBook();
+        void ReturnBook();
     }
 }
