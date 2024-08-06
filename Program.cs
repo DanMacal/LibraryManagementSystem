@@ -29,6 +29,10 @@ namespace ManagementSystem
 
             daniel.UpdateUserDetails("Danny", "dan.dan");
             Console.WriteLine(daniel);
+            Console.WriteLine();
+
+            library.UpdateUser("Danny", daniel);
+            library.ListUsers();
 
             Console.ReadKey();
         }
