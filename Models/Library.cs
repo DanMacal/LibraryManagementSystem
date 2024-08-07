@@ -2,51 +2,38 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace LibraryManagementSystem.Models
 {
     public class Library
     {
-        public List<Book> Books { get; set; }
-        public List<User> Users { get; set; }
-        public List<BorrowTransaction> Transactions { get; set; } = new List<BorrowTransaction>();
+        public List<Book> Books { get; private set; }
+        public List<User> Users { get; private set; }
+        public List<BorrowTransaction> Transactions { get; private set; }
 
         // Business Logic
         private readonly BookService bookService;
         private readonly UserService userService;
+        private readonly BorrowService borrowService;
 
         public Library()
         {
             Books = new List<Book>();
             Users = new List<User>();
+            Transactions = new List<BorrowTransaction>();
             bookService = new BookService(Books);
             userService = new UserService(Users);
-        }
-
-        public Library(Book book)
-        {
-            Books = new List<Book> { book };
-            Users = new List<User>();
-            bookService = new BookService(Books);
-            userService = new UserService(Users);
-        }
-
-        public Library(User user)
-        {
-            Books = new List<Book>();
-            Users = new List<User> { user };
-            bookService = new BookService(Books);
-            userService = new UserService(Users);
+            borrowService = new BorrowService(this);
         }
 
         public Library(List<Book> books, List<User> users)
         {
             Books = books ?? new List<Book>();
             Users = users ?? new List<User>();
+            Transactions = new List<BorrowTransaction>();
             bookService = new BookService(Books);
             userService = new UserService(Users);
+            borrowService = new BorrowService(this);
         }
 
 
@@ -93,7 +80,6 @@ namespace LibraryManagementSystem.Models
             userService.UpdateUser(name, updatedUser);
         }
 
-
         public void RemoveUser()
         {
             userService.RemoveUser();
@@ -103,5 +89,18 @@ namespace LibraryManagementSystem.Models
         {
             userService.ListUsers();
         }
+
+
+        // Borrow methods
+        public void BorrowBook(int userId, string title)
+        {
+            borrowService.BorrowBook(userId, title);
+        }
+
+        public void ReturnBook(int userId, string title)
+        {
+            borrowService.ReturnBook(userId, title);
+        }
     }
 }
+

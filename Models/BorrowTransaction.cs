@@ -8,7 +8,7 @@ using System.Transactions;
 
 namespace LibraryManagementSystem.Models
 {
-    class BorrowTransaction : IBorrowable
+    public class BorrowTransaction : IBorrowable
     {
         public int TransactionID { get; set; }
         public int UserID { get; set; }
