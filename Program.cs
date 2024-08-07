@@ -1,5 +1,5 @@
-﻿using LibraryManagementSysyem.Models;
-using LibraryManagementSysyem.Services;
+﻿using LibraryManagementSystem.Models;
+using LibraryManagementSystem.Services;
 using System;
 
 namespace LibraryManagementSystem

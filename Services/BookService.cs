@@ -1,13 +1,13 @@
-﻿using LibraryManagementSysyem.Models;
+﻿using LibraryManagementSystem.Models;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagementSysyem.Services
+namespace LibraryManagementSystem.Services
 {
-    class BookService
+    public class BookService
     {
         private readonly List<Book> Books;
 

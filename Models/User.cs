@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagementSysyem.Models
+namespace LibraryManagementSystem.Models
 {
-    class User
+    public class User
     {
         public int UserID { get; set; }
         public string Name { get; set; }

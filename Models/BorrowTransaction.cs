@@ -1,4 +1,4 @@
-﻿using LibraryManagementSysyem.Services;
+﻿using LibraryManagementSystem.Services;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +6,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Transactions;
 
-namespace LibraryManagementSysyem.Models
+namespace LibraryManagementSystem.Models
 {
     class BorrowTransaction : IBorrowable
     {

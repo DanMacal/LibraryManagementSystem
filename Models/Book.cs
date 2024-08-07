@@ -4,19 +4,19 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace LibraryManagementSysyem.Models
+namespace LibraryManagementSystem.Models
 {
-    class Book
+    public class Book
     {
         public string Title { get; set; }
         public int ISBN { get; set; }
         public string Author { get; set; }
         public Genre Genre { get; set; }
 
-        public Book(string title, int isbm, string author, Genre genre)
+        public Book(string title, int isbn, string author, Genre genre)
         {
             Title = title;
-            ISBN = isbm;
+            ISBN = isbn;
             Author = author;
             Genre = genre;
         }
@@ -60,7 +60,7 @@ namespace LibraryManagementSysyem.Models
         Fantasy,
         Humor,
         Romance,
-        Science_Fiction,
-        Short_Story
+        ScienceFiction,
+        ShortStory
     }
 }
