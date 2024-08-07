@@ -1,46 +1,96 @@
 ﻿using LibraryManagementSysyem.Models;
+using LibraryManagementSysyem.Services;
 using System;
 
-namespace ManagementSystem
+namespace LibraryManagementSystem
 {
     class Program
     {
         static void Main(string[] args)
         {
-            var library = new Library();
+            Library library = new Library();
 
-            var GOT1 = new Book("A Game of Thrones", 0_553_10354_7, "George R. R. Martin", Genre.Fantasy);
-            library.AddBook(GOT1);
-            var GOT2 = new Book("A Clash of Kings",  0_553_10803_4, "George R. R. Martin",Genre.Fantasy);
-            library.AddBook(GOT2);
-            Console.WriteLine();
+            BorrowService borrowService = new BorrowService(library);
 
-            library.ListBooks();
-            Console.WriteLine();
+            while (true)
+            {
+                Console.Clear();
+                Console.WriteLine("==========================================================");
+                Console.WriteLine("          Personal Library Management System");
+                Console.WriteLine("==========================================================");
+                Console.WriteLine();
+                Console.WriteLine("1. Add Book");
+                Console.WriteLine("2. Remove Book");
+                Console.WriteLine("3. Update Book Details");
+                Console.WriteLine("4. Search Book");
+                Console.WriteLine("5. List All Books");
+                Console.WriteLine();
+                Console.WriteLine("6. Add User");
+                Console.WriteLine("7. Remove User");
+                Console.WriteLine("8. Update User Details");
+                Console.WriteLine("9. Search User");
+                Console.WriteLine("10. List All Users");
+                Console.WriteLine();
+                Console.WriteLine("11. Borrow Book");
+                Console.WriteLine("12. Return Book");
+                Console.WriteLine("13. List All Borrow Transactions");
+                Console.WriteLine();
+                Console.WriteLine("0. Exit");
+                Console.WriteLine();
+                Console.Write("Please select an option: ");
+                string choice = Console.ReadLine();
 
-            var daniel = new User(432, "Daniel", "dan.dan@hotmail.com");
-            library.AddUser(daniel);
-            var tanner = new User(451, "Tanner", "tanner.tanner@outlook.com");
-            library.AddUser(tanner);
-            Console.WriteLine();
+                switch (choice)
+                {
+                    case "1":
+                        // Code to add book
+                        break;
+                    case "2":
+                        // Code to remove book
+                        break;
+                    case "3":
+                        // Code to update book details
+                        break;
+                    case "4":
+                        // Code to search book
+                        break;
+                    case "5":
+                        // Code to list all books
+                        break;
+                    case "6":
+                        // Code to add user
+                        break;
+                    case "7":
+                        // Code to remove user
+                        break;
+                    case "8":
+                        // Code to update user details
+                        break;
+                    case "9":
+                        // Code to search user
+                        break;
+                    case "10":
+                        // Code to list all users
+                        break;
+                    case "11":
+                        // Code to borrow book
+                        break;
+                    case "12":
+                        // Code to return book
+                        break;
+                    case "13":
+                        // Code to list all borrow transactions
+                        break;
+                    case "0":
+                        return;
+                    default:
+                        Console.WriteLine("Invalid option, please try again.");
+                        break;
+                }
 
-            library.ListUsers();
-            Console.WriteLine();
-
-            daniel.UpdateUserDetails("Danny", "dan.dan");
-            Console.WriteLine(daniel);
-            Console.WriteLine();
-
-            library.UpdateUser("Danny", daniel);
-            library.ListUsers();
-            Console.WriteLine();
-
-            BorrowTransaction book1 = new BorrowTransaction(213, 133, GOT1,DateTime.Now, DateTime.Now);
-            Console.WriteLine(book1);
-
-            book1.BorrowBook();
-
-            Console.ReadKey();
+                Console.WriteLine("Press any key to continue...");
+                Console.ReadKey();
+            }
         }
     }
 }
