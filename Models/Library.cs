@@ -38,6 +38,8 @@ namespace LibraryManagementSystem.Models
 
 
         // Book methods
+
+        // Create/Add
         public void CreateBook()
         {
             bookService.CreateBook();
@@ -47,6 +49,7 @@ namespace LibraryManagementSystem.Models
             bookService.AddBook(book);
         }
 
+        // Search
         public void SearchBook(string query)
         {
             List<Book> results = bookService.SearchBook(query);
@@ -65,16 +68,35 @@ namespace LibraryManagementSystem.Models
             }
         }
 
-        public void UpdateBook(string title, Book updatedBook)
+        // Update
+        public bool UpdateBookTitle(string oldTitle, string newTitle)
         {
-            bookService.UpdateBook(title, updatedBook);
+            return bookService.UpdateBookTitle(oldTitle, newTitle);
         }
 
+        public bool UpdateBookAuthor(string title, string newAuthor)
+        {
+            return bookService.UpdateBookAuthor(title, newAuthor);
+        }
+
+        public bool UpdateBookGenre(string title, Genre newGenre)
+        {
+            return bookService.UpdateBookGenre(title, newGenre);
+        }
+
+        public bool UpdateBookDetails(string title, string newAuthor, Genre? newGenre)
+        {
+            return bookService.UpdateBookDetails(title, newAuthor, newGenre);
+        }
+
+
+        // Remove
         public void RemoveBook()
         {
             bookService.RemoveBook();
         }
 
+        // List
         public void ListBooks()
         {
             bookService.ListBooks();

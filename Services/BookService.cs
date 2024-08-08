@@ -93,7 +93,7 @@ namespace LibraryManagementSystem.Services
             return matchingBooks;
         }
 
-
+        /*
         public void UpdateBook(string title, Book updatedBook)
         {
             var book = Books.Find(b => b.Title == title);
@@ -110,6 +110,52 @@ namespace LibraryManagementSystem.Services
             {
                 Console.WriteLine("Book not found.");
             }
+        }
+        */
+
+
+        public bool UpdateBookTitle(string oldTitle, string newTitle)
+        {
+            var book = Books.Find(b => b.Title.Equals(oldTitle, StringComparison.OrdinalIgnoreCase));
+            if (book != null)
+            {
+                book.UpdateTitle(newTitle);
+                return true;
+            }
+            return false;
+        }
+
+        public bool UpdateBookAuthor(string title, string newAuthor)
+        {
+            var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            if (book != null)
+            {
+                book.UpdateAuthor(newAuthor);
+                return true;
+            }
+            return false;
+        }
+
+        public bool UpdateBookGenre(string title, Genre newGenre)
+        {
+            var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            if (book != null)
+            {
+                book.UpdateGenre(newGenre);
+                return true;
+            }
+            return false;
+        }
+
+        public bool UpdateBookDetails(string title, string newAuthor, Genre? newGenre)
+        {
+            var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            if (book != null)
+            {
+                book.UpdateDetails(newAuthor, newGenre);
+                return true;
+            }
+            return false;
         }
 
 

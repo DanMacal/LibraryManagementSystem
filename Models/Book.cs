@@ -9,11 +9,11 @@ namespace LibraryManagementSystem.Models
     public class Book
     {
         public string Title { get; set; }
-        public int ISBN { get; set; }
+        public long ISBN { get; set; }
         public string Author { get; set; }
         public Genre Genre { get; set; }
 
-        public Book(string title, int isbn, string author, Genre genre)
+        public Book(string title, long isbn, string author, Genre genre)
         {
             Title = title;
             ISBN = isbn;
@@ -22,36 +22,48 @@ namespace LibraryManagementSystem.Models
         }
 
 
-        public void UpdateBookDetails(string author, Genre genre)
+        public void UpdateTitle(string newTitle)
         {
-            Author = author;
-            Genre = genre;
-
-            Console.WriteLine($"Book '{Title}' details has been successfully updated.");
+            Title = newTitle;
+            Console.WriteLine($"Book title has been updated to '{newTitle}'.");
         }
 
 
-        public void UpdateBookAuthor(string author)
+        public void UpdateAuthor(string newAuthor)
         {
-            Author = author;
-
-            Console.WriteLine($"Book '{Title}' author has been successfully updated.");
+            Author = newAuthor;
+            Console.WriteLine($"Book author has been updated to '{newAuthor}'.");
         }
 
 
-        public void UpdateBookGenre(Genre genre)
+        public void UpdateGenre(Genre newGenre)
         {
-            Genre = genre;
-
-            Console.WriteLine($"Book '{Title}' genre has been successfully updated.");
+            Genre = newGenre;
+            Console.WriteLine($"Book genre has been updated to '{newGenre}'.");
         }
 
+
+        public void UpdateDetails(string newAuthor, Genre? newGenre)
+        {
+            if (!string.IsNullOrEmpty(newAuthor))
+            {
+                UpdateAuthor(newAuthor);
+            }
+
+            if (newGenre.HasValue)
+            {
+                UpdateGenre(newGenre.Value);
+            }
+
+            Console.WriteLine($"Book '{Title}' details have been successfully updated.");
+        }
 
         public override string ToString()
         {
-            return $"Title: {Title}\nAuthor: {Author}\nGenre: {Genre}\nISBM: {ISBN}";
+            return $"Title: {Title}\nAuthor: {Author}\nGenre: {Genre}\nISBN: {ISBN}";
         }
     }
+
 
     public enum Genre
     {
