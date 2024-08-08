@@ -55,7 +55,7 @@ namespace LibraryManagementSystem
                         // Code to search book
                         break;
                     case "5":
-                        // Code to list all books
+                        library.ListBooks();
                         break;
                     case "6":
                         // Code to add user
