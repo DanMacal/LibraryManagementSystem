@@ -22,7 +22,7 @@ namespace LibraryManagementSystem.Services
             if (IsValidBook(book))
             {
                 Books.Add(book);
-                Console.WriteLine($"'{book.Title}' has been successfully added.");
+                Console.WriteLine($"\n'{book.Title}' has been successfully added.");
             }
             else
             {
@@ -30,6 +30,46 @@ namespace LibraryManagementSystem.Services
             }
         }
 
+
+        public void CreateBook()
+        {
+            Console.Clear();
+
+            Console.WriteLine("Enter ISBN:");
+            int isbn = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("\nEnter Title:");
+            string title = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Author:");
+            string author = Console.ReadLine();
+
+            Console.WriteLine("\nSelect Genre:");
+            foreach (var genre in Enum.GetValues(typeof(Genre)))
+            {
+                Console.WriteLine($"{(int)genre}. {genre}");
+            }
+
+            Genre selectedGenre;
+            while (true)
+            {
+                Console.WriteLine("\nEnter the number corresponding to the genre:");
+                if (int.TryParse(Console.ReadLine(), out int genreInput) && Enum.IsDefined(typeof(Genre), genreInput))
+                {
+                    selectedGenre = (Genre)genreInput;
+                    break;
+                }
+                else
+                {
+                    Console.WriteLine("Invalid input. Please try again.");
+                }
+            }
+
+
+            Book newBook = new Book(title, isbn, author, selectedGenre);
+
+            AddBook(newBook);
+        }
 
         public Book SearchBook(string query)
         {
@@ -106,5 +146,7 @@ namespace LibraryManagementSystem.Services
         {
             return book != null && !string.IsNullOrEmpty(book.Title) && book.ISBN > 0 && !string.IsNullOrEmpty(book.Author);
         }
+
+
     }
 }

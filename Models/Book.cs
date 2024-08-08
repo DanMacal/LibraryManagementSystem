@@ -55,7 +55,7 @@ namespace LibraryManagementSystem.Models
 
     public enum Genre
     {
-        Novel,
+        Novel = 1, 
         Comics,
         Fantasy,
         Humor,

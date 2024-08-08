@@ -38,6 +38,10 @@ namespace LibraryManagementSystem.Models
 
 
         // Book methods
+        public void CreateBook()
+        {
+            bookService.CreateBook();
+        }
         public void AddBook(Book book)
         {
             bookService.AddBook(book);

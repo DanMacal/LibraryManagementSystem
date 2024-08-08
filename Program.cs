@@ -19,16 +19,16 @@ namespace LibraryManagementSystem
                 Console.WriteLine("          Personal Library Management System");
                 Console.WriteLine("==========================================================");
                 Console.WriteLine();
-                Console.WriteLine("1. Add Book");
-                Console.WriteLine("2. Remove Book");
-                Console.WriteLine("3. Update Book Details");
-                Console.WriteLine("4. Search Book");
-                Console.WriteLine("5. List All Books");
+                Console.WriteLine("1.  Add Book");
+                Console.WriteLine("2.  Remove Book");
+                Console.WriteLine("3.  Update Book Details");
+                Console.WriteLine("4.  Search Book");
+                Console.WriteLine("5.  List All Books");
                 Console.WriteLine();
-                Console.WriteLine("6. Add User");
-                Console.WriteLine("7. Remove User");
-                Console.WriteLine("8. Update User Details");
-                Console.WriteLine("9. Search User");
+                Console.WriteLine("6.  Add User");
+                Console.WriteLine("7.  Remove User");
+                Console.WriteLine("8.  Update User Details");
+                Console.WriteLine("9.  Search User");
                 Console.WriteLine("10. List All Users");
                 Console.WriteLine();
                 Console.WriteLine("11. Borrow Book");
@@ -43,7 +43,7 @@ namespace LibraryManagementSystem
                 switch (choice)
                 {
                     case "1":
-                        // Code to add book
+                        library.CreateBook();
                         break;
                     case "2":
                         // Code to remove book
@@ -91,6 +91,12 @@ namespace LibraryManagementSystem
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
+
+
+            
+
+
+
         }
     }
 }
