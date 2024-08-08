@@ -53,6 +53,10 @@ namespace LibraryManagementSystem
                         break;
                     case "4":
                         // Code to search book
+                        Console.Clear();
+                        Console.WriteLine("Enter search query:");
+                        string query = Console.ReadLine();
+                        library.SearchBook(query);
                         break;
                     case "5":
                         library.ListBooks();
@@ -91,10 +95,6 @@ namespace LibraryManagementSystem
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
-
-
-            
-
 
 
         }

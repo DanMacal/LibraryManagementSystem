@@ -1,6 +1,7 @@
 ﻿using LibraryManagementSystem.Models;
 using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -72,18 +73,24 @@ namespace LibraryManagementSystem.Services
             AddBook(newBook);
         }
 
-        public Book SearchBook(string query)
+
+        public List<Book> SearchBook(string query)
         {
+            // Validate the query
             if (string.IsNullOrWhiteSpace(query))
             {
-                return null;
+                Console.WriteLine("Search query cannot be empty.");
+                return new List<Book>();
             }
 
-            return Books.Find(b =>
+            // Search for books that match the query
+            List<Book> matchingBooks = Books.FindAll(b =>
                 b.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
                 b.Author.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
                 b.Genre.ToString().IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
             );
+
+            return matchingBooks;
         }
 
 

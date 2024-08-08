@@ -47,9 +47,22 @@ namespace LibraryManagementSystem.Models
             bookService.AddBook(book);
         }
 
-        public Book SearchBook(string query)
+        public void SearchBook(string query)
         {
-            return bookService.SearchBook(query);
+            List<Book> results = bookService.SearchBook(query);
+
+            if (results.Count == 0)
+            {
+                Console.WriteLine("No books found matching the query.");
+            }
+            else
+            {
+                Console.WriteLine("Search Results:");
+                for (int i = 0; i < results.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {results[i].Title} by {results[i].Author} (Genre: {results[i].Genre})");
+                }
+            }
         }
 
         public void UpdateBook(string title, Book updatedBook)
