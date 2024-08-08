@@ -46,7 +46,7 @@ namespace LibraryManagementSystem
                         library.CreateBook();
                         break;
                     case "2":
-                        // Code to remove book
+                        library.RemoveBook();
                         break;
                     case "3":
                         // Code to update book details

@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LibraryManagementSystem.Services
 {
@@ -117,7 +118,7 @@ namespace LibraryManagementSystem.Services
                 removeIndex <= Books.Count)
             {
                 Console.WriteLine();
-                Console.WriteLine($"Item '{Books[removeIndex - 1]}' removed successfully.");
+                Console.WriteLine($"Item {Books[removeIndex - 1]} removed successfully.");
                 Books.RemoveAt(removeIndex - 1);
             }
             else
@@ -129,15 +130,17 @@ namespace LibraryManagementSystem.Services
 
         public void ListBooks()
         {
-            Console.WriteLine("Books in Library:");
+            Console.Clear();
 
             if (Books.Count == 0)
             {
-                Console.WriteLine("No books to display.");
+                Console.WriteLine("No books available.");
+                return;
             }
-            else
+
+            for (int i = 0; i < Books.Count; i++)
             {
-                Books.ForEach(book => Console.WriteLine(book.Title));
+                Console.WriteLine($"{i + 1}. {Books[i].Title}");
             }
         }
 
