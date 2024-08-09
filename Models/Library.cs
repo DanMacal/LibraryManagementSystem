@@ -96,6 +96,17 @@ namespace LibraryManagementSystem.Models
             bookService.RemoveBook();
         }
 
+        // Details
+        public void ShowBookDetails(string title)
+        {
+            var bookFound = bookService.ShowBookDetails(title);
+
+            if (!bookFound)
+            {
+                Console.WriteLine("Book not found.");
+            }
+        }
+
         // List
         public void ListBooks()
         {

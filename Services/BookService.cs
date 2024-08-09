@@ -181,6 +181,20 @@ namespace LibraryManagementSystem.Services
         }
 
 
+        public bool ShowBookDetails(string title)
+        {
+            Console.WriteLine();
+
+            var bookSearch = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
+            if (bookSearch != null)
+            {
+                Console.WriteLine($"Title: {bookSearch.Title}\nAuthor: {bookSearch.Author}\nGenre: {bookSearch.Genre}\nISBN: {bookSearch.ISBN}"); ;
+                return true;
+            }
+            return false;
+        }
+
+
         public void ListBooks()
         {
             Console.Clear();
