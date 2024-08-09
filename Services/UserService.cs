@@ -32,6 +32,25 @@ namespace LibraryManagementSystem.Services
         }
 
 
+        public void CreateUser()
+        {
+            Console.Clear();
+
+            Console.WriteLine("\nEnter UserID: ");
+            int userid = Convert.ToInt32(Console.ReadLine());
+
+            Console.WriteLine("\nEnter Name: ");
+            string name = Console.ReadLine();
+
+            Console.WriteLine("\nEnter Email: ");
+            string email = Console.ReadLine();
+
+            User newUser = new User(userid, name, email);
+
+            AddUser(newUser);
+        }
+
+
         public User SearchUser(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
@@ -44,6 +63,7 @@ namespace LibraryManagementSystem.Services
                 u.Email.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
             );
         }
+
 
         public void UpdateUser(string name, User updatedUser)
         {
@@ -87,15 +107,18 @@ namespace LibraryManagementSystem.Services
 
         public void ListUsers()
         {
-            Console.WriteLine("Users in Library:");
+            Console.Clear();
 
+            Console.WriteLine("Users in Library:");
+            Console.WriteLine();
             if (Users.Count == 0)
             {
                 Console.WriteLine("No users to display.");
             }
-            else
+
+            for (int i = 0; i < Users.Count; i++)
             {
-                Users.ForEach(user => Console.WriteLine(user.Name));
+                Console.WriteLine($"{i + 1}. {Users[i].Name}");
             }
         }
 

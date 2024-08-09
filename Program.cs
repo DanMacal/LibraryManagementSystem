@@ -54,7 +54,6 @@ namespace LibraryManagementSystem
                         library.RemoveBook();
                         break;
                     case "3":
-                        // Code to update book details
                         ShowUpdateBookMenu(library);
                         break;
                     case "4":
@@ -69,6 +68,7 @@ namespace LibraryManagementSystem
                         break;
                     case "6":
                         // Code to add user
+                        library.CreateUser();
                         break;
                     case "7":
                         // Code to remove user
@@ -81,6 +81,7 @@ namespace LibraryManagementSystem
                         break;
                     case "10":
                         // Code to list all users
+                        library.ListUsers();
                         break;
                     case "11":
                         // Code to borrow book
@@ -101,6 +102,7 @@ namespace LibraryManagementSystem
                 Console.WriteLine("Press any key to continue...");
                 Console.ReadKey();
             }
+
 
 
             static void ShowUpdateBookMenu(Library library)
@@ -158,7 +160,9 @@ namespace LibraryManagementSystem
                                 Genre newGenre = (Genre)genreInput;
                                 success = library.UpdateBookGenre(title, newGenre);
                                 if (success)
+                                {
                                     Console.WriteLine("Book genre updated successfully.");
+                                }
                                 else
                                     Console.WriteLine("Book not found.");
                             }
@@ -186,7 +190,9 @@ namespace LibraryManagementSystem
                             success = library.UpdateBookDetails(title, updatedAuthor, updatedGenre);
 
                             if (success)
+                            {
                                 Console.WriteLine("Book details updated successfully.");
+                            }
                             else
                                 Console.WriteLine("Book not found.");
                             break;
@@ -198,6 +204,8 @@ namespace LibraryManagementSystem
                     }
                 }
             }
+
+
 
 
             //End

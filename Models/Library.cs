@@ -104,26 +104,37 @@ namespace LibraryManagementSystem.Models
 
 
         // User methods
+
+        // Add/Create
         public void AddUser(User user)
         {
             userService.AddUser(user);
         }
 
+        public void CreateUser()
+        {
+            userService.CreateUser();
+        }
+
+        // Search
         public User SearchUser(string query)
         {
             return userService.SearchUser(query);
         }
 
+        // Update
         public void UpdateUser(string name, User updatedUser)
         {
             userService.UpdateUser(name, updatedUser);
         }
 
+        // Remove
         public void RemoveUser()
         {
             userService.RemoveUser();
         }
 
+        // List
         public void ListUsers()
         {
             userService.ListUsers();
