@@ -69,9 +69,7 @@ namespace LibraryManagementSystem.Views
                     case "5":
                         // Details - Book
                         Console.Clear();
-                        Console.Write("Enter the title of the book to view details: ");
-                        string bookTitle = Console.ReadLine();
-                        library.ShowBookDetails(bookTitle);
+                        library.ShowBookDetails();
                         break;
                     case "6":
                         // List - Book

@@ -49,6 +49,7 @@ namespace LibraryManagementSystem.Models
             bookService.AddBook(book);
         }
 
+
         // Search
         public void SearchBook(string query)
         {
@@ -67,6 +68,7 @@ namespace LibraryManagementSystem.Models
                 }
             }
         }
+
 
         // Update
         public bool UpdateBookTitle(string oldTitle, string newTitle)
@@ -96,16 +98,13 @@ namespace LibraryManagementSystem.Models
             bookService.RemoveBook();
         }
 
-        // Details
-        public void ShowBookDetails(string title)
-        {
-            var bookFound = bookService.ShowBookDetails(title);
 
-            if (!bookFound)
-            {
-                Console.WriteLine("Book not found.");
-            }
+        // Details
+        public void ShowBookDetails()
+        {
+            bookService.ShowBookDetails();
         }
+
 
         // List
         public void ListBooks()

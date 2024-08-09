@@ -181,17 +181,24 @@ namespace LibraryManagementSystem.Services
         }
 
 
-        public bool ShowBookDetails(string title)
+        public void ShowBookDetails()
         {
-            Console.WriteLine();
+            ListBooks();
 
-            var bookSearch = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            if (bookSearch != null)
+            Console.Write("Enter the number of the book to view details: ");
+            if (int.TryParse(Console.ReadLine(), out int index) && index >= 1 && index <= Books.Count)
             {
-                Console.WriteLine($"Title: {bookSearch.Title}\nAuthor: {bookSearch.Author}\nGenre: {bookSearch.Genre}\nISBN: {bookSearch.ISBN}"); ;
-                return true;
+                var selectedBook = Books[index - 1];
+                Console.Clear();
+                Console.WriteLine($"Title: {selectedBook.Title}");
+                Console.WriteLine($"Author: {selectedBook.Author}");
+                Console.WriteLine($"Genre: {selectedBook.Genre}");
+                Console.WriteLine($"ISBN: {selectedBook.ISBN}");
             }
-            return false;
+            else
+            {
+                Console.WriteLine("Invalid selection. Please enter a valid book number.");
+            }
         }
 
 
