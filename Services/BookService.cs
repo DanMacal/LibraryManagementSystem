@@ -19,6 +19,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // Add/Create 
         public void AddBook(Book book)
         {
             if (IsValidBook(book))
@@ -74,6 +76,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // Search 
         public List<Book> SearchBook(string query)
         {
             // Validate the query
@@ -93,27 +97,9 @@ namespace LibraryManagementSystem.Services
             return matchingBooks;
         }
 
-        /*
-        public void UpdateBook(string title, Book updatedBook)
-        {
-            var book = Books.Find(b => b.Title == title);
-
-            if (book != null)
-            {
-                book.Title = updatedBook.Title;
-                book.Author = updatedBook.Author;
-                book.Genre = updatedBook.Genre;
-
-                Console.WriteLine($"Book with ISBN {title} has been successfully updated.");
-            }
-            else
-            {
-                Console.WriteLine("Book not found.");
-            }
-        }
-        */
 
 
+        // Update 
         public bool UpdateBookTitle(string oldTitle, string newTitle)
         {
             var book = Books.Find(b => b.Title.Equals(oldTitle, StringComparison.OrdinalIgnoreCase));
@@ -124,6 +110,7 @@ namespace LibraryManagementSystem.Services
             }
             return false;
         }
+
 
         public bool UpdateBookAuthor(string title, string newAuthor)
         {
@@ -136,6 +123,7 @@ namespace LibraryManagementSystem.Services
             return false;
         }
 
+
         public bool UpdateBookGenre(string title, Genre newGenre)
         {
             var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
@@ -146,6 +134,7 @@ namespace LibraryManagementSystem.Services
             }
             return false;
         }
+
 
         public bool UpdateBookDetails(string title, string newAuthor, Genre? newGenre)
         {
@@ -159,6 +148,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // Remove 
         public void RemoveBook()
         {
             ListBooks();
@@ -181,6 +172,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // Details 
         public void ShowBookDetails()
         {
             ListBooks();
@@ -202,6 +195,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // List 
         public void ListBooks()
         {
             Console.Clear();

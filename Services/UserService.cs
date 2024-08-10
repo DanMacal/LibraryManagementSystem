@@ -18,6 +18,7 @@ namespace LibraryManagementSystem.Services
         }
 
 
+        // Add/Create 
         public void AddUser(User user)
         {
             if (IsValidUser(user))
@@ -51,6 +52,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // Search
         public List<User> SearchUser(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
@@ -67,26 +70,9 @@ namespace LibraryManagementSystem.Services
             return matchingUsers;
         }
 
-        /*
-        public void UpdateUser(string name, User updatedUser)
-        {
-            var user = Users.Find(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+     
 
-            if (user != null)
-            {
-                user.Name = updatedUser.Name;
-                user.Email = updatedUser.Email;
-
-                Console.WriteLine($"User with name '{name}' has been successfully updated.");
-            }
-            else
-            {
-                Console.WriteLine("User not found.");
-            }
-        }
-        */
-
-
+        // Update
         public bool UpdateUserName(string oldName, string newName)
         {
             var user = Users.Find(u => u.Name.Equals(oldName, StringComparison.OrdinalIgnoreCase));
@@ -121,6 +107,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // Remove
         public void RemoveUser()
         {
             ListUsers();
@@ -143,6 +131,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // Details
         public void ShowUserDetails()
         {
             ListUsers();
@@ -162,6 +152,8 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
+        // List
         public void ListUsers()
         {
             Console.Clear();

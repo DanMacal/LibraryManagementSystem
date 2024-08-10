@@ -50,6 +50,7 @@ namespace LibraryManagementSystem.Models
         }
 
 
+
         // Search
         public void SearchBook(string query)
         {
@@ -70,6 +71,7 @@ namespace LibraryManagementSystem.Models
         }
 
 
+
         // Update
         public bool UpdateBookTitle(string oldTitle, string newTitle)
         {
@@ -86,10 +88,13 @@ namespace LibraryManagementSystem.Models
             return bookService.UpdateBookGenre(title, newGenre);
         }
 
+
+
         public bool UpdateBookDetails(string title, string newAuthor, Genre? newGenre)
         {
             return bookService.UpdateBookDetails(title, newAuthor, newGenre);
         }
+
 
 
         // Remove
@@ -99,11 +104,13 @@ namespace LibraryManagementSystem.Models
         }
 
 
+
         // Details
         public void ShowBookDetails()
         {
             bookService.ShowBookDetails();
         }
+
 
 
         // List
@@ -126,6 +133,7 @@ namespace LibraryManagementSystem.Models
             userService.CreateUser();
         }
 
+
         // Search
         public void SearchUser(string query)
         {
@@ -145,6 +153,8 @@ namespace LibraryManagementSystem.Models
             }
         }
 
+
+
         // Update
         public bool UpdateUserName(string oldName, string newName)
         {
@@ -161,11 +171,15 @@ namespace LibraryManagementSystem.Models
             return userService.UpdateUserDetails(name, newEmail);
         }
 
+
+
         // Remove
         public void RemoveUser()
         {
             userService.RemoveUser();
         }
+
+
 
         // List
         public void ListUsers()
