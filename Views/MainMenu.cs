@@ -63,8 +63,8 @@ namespace LibraryManagementSystem.Views
                         // Search - Book
                         Console.Clear();
                         Console.WriteLine("Enter search query:");
-                        string query = Console.ReadLine();
-                        library.SearchBook(query);
+                        string queryBook = Console.ReadLine();
+                        library.SearchBook(queryBook);
                         break;
                     case "5":
                         // Details - Book
@@ -77,23 +77,31 @@ namespace LibraryManagementSystem.Views
                         break;
                     case "7":
                         // Create - User
-                        library.RemoveUser();
+                        library.CreateUser();
                         break;
                     case "8":
                         // Remove - User
+                        library.RemoveUser();
                         break;
                     case "9":
                         // Update - User
+                        BookUpdateMenu.ShowUpdateBookMenu(library);
                         break;
                     case "10":
                         // Search - User
-                        library.ListUsers();
+                        Console.Clear();
+                        Console.WriteLine("Enter search query:");
+                        string queryUser = Console.ReadLine();
+                        library.SearchUser(queryUser);
                         break;
                     case "11":
                         // Details - User
+                        Console.Clear();
+                        library.ShowUserDetails();
                         break;
                     case "12":
                         // List - User
+                        library.ListUsers();
                         break;
                     case "13":
                         // Borrow - Book

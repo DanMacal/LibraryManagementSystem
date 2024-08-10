@@ -51,20 +51,23 @@ namespace LibraryManagementSystem.Services
         }
 
 
-        public User SearchUser(string query)
+        public List<User> SearchUser(string query)
         {
             if (string.IsNullOrWhiteSpace(query))
             {
-                return null;
+                Console.WriteLine("Search query cannot be empty.");
+                return new List<User>();
             }
 
-            return Users.Find(u =>
+            List<User> matchingUsers = Users.FindAll(u =>
                 u.Name.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
                 u.Email.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0
             );
+
+            return matchingUsers;
         }
 
-
+        /*
         public void UpdateUser(string name, User updatedUser)
         {
             var user = Users.Find(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
@@ -80,6 +83,41 @@ namespace LibraryManagementSystem.Services
             {
                 Console.WriteLine("User not found.");
             }
+        }
+        */
+
+
+        public bool UpdateUserName(string oldName, string newName)
+        {
+            var user = Users.Find(u => u.Name.Equals(oldName, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
+            {
+                user.UpdateUserName(newName);
+                return true;
+            }
+            return false;
+        }
+
+        public bool UpdateUserEmail(string name, string newEmail)
+        {
+            var user = Users.Find(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
+            {
+                user.UpdateUserEmail(newEmail);
+            }
+            return false;
+        }
+
+
+        public bool UpdateUserDetails(string name, string newEmail)
+        {
+            var user = Users.Find(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            if (user != null)
+            {
+                user.UpdateUserDetails(name, newEmail);
+                return true;
+            }
+            return false;
         }
 
 
@@ -105,12 +143,32 @@ namespace LibraryManagementSystem.Services
         }
 
 
+        public void ShowUserDetails()
+        {
+            ListUsers();
+
+            Console.WriteLine("Enter the number of the user to view details: ");
+            if (int.TryParse(Console.ReadLine(), out int index) && index >= 1 && index <= Users.Count)
+            {
+                var selectedUser = Users[index - 1];
+                Console.Clear();
+                Console.WriteLine($"Name: {selectedUser.Name}");
+                Console.WriteLine($"Email: {selectedUser.Email}");
+            }
+            else
+            {
+                Console.WriteLine("Invalid selection. Please enter a valid user number.");
+            }
+        }
+
+
         public void ListUsers()
         {
             Console.Clear();
 
             Console.WriteLine("Users in Library:");
             Console.WriteLine();
+
             if (Users.Count == 0)
             {
                 Console.WriteLine("No users to display.");

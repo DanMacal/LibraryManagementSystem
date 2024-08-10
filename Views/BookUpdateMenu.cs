@@ -40,15 +40,28 @@ namespace LibraryManagementSystem.Views
                         success = library.UpdateBookTitle(title, newTitle);
 
                         if (success)
+                        {
                             Console.WriteLine("Book title updated successfully.");
+                        }
                         else
+                        {
                             Console.WriteLine("Book not found.");
+                        }
                         break;
                     // Author
                     case "2":
                         Console.WriteLine("Enter the new author:");
                         string newAuthor = Console.ReadLine();
                         library.UpdateBookAuthor(title, newAuthor);
+
+                        if (success)
+                        {
+                            Console.WriteLine("Book's author updated successfully.");
+                        }
+                        else
+                        {
+                            Console.WriteLine("Invalid author.");
+                        }
                         break;
                     // Genre
                     case "3":

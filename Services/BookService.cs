@@ -152,7 +152,7 @@ namespace LibraryManagementSystem.Services
             var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
             if (book != null)
             {
-                book.UpdateDetails(newAuthor, newGenre);
+                book.UpdateBookDetails(newAuthor, newGenre);
                 return true;
             }
             return false;
@@ -205,6 +205,9 @@ namespace LibraryManagementSystem.Services
         public void ListBooks()
         {
             Console.Clear();
+
+            Console.WriteLine("Books in Library:");
+            Console.WriteLine();
 
             if (Books.Count == 0)
             {

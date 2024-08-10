@@ -127,15 +127,38 @@ namespace LibraryManagementSystem.Models
         }
 
         // Search
-        public User SearchUser(string query)
+        public void SearchUser(string query)
         {
-            return userService.SearchUser(query);
+            List<User> results = userService.SearchUser(query);
+
+            if (results.Count == 0)
+            {
+                Console.WriteLine("No books found matching the query.");
+            }
+            else
+            {
+                Console.WriteLine("Search Results:");
+                for (int i = 0; i < results.Count; i++)
+                {
+                    Console.WriteLine($"{i + 1}. {results[i].Name} by {results[i].Email})");
+                }
+            }
         }
 
         // Update
-        public void UpdateUser(string name, User updatedUser)
+        public bool UpdateUserName(string oldName, string newName)
         {
-            userService.UpdateUser(name, updatedUser);
+            return userService.UpdateUserName(oldName, newName);
+        }
+
+        public bool UpdateUserEmail(string name, string newEmail)
+        {
+            return userService.UpdateUserEmail(name, newEmail);
+        }
+
+        public bool UpdateUserDetails(string name, string newEmail)
+        {
+            return userService.UpdateUserDetails(name, newEmail);
         }
 
         // Remove
@@ -150,6 +173,10 @@ namespace LibraryManagementSystem.Models
             userService.ListUsers();
         }
 
+        public void ShowUserDetails()
+        {
+            userService.ShowUserDetails();
+        }
 
         // Borrow methods
         public void BorrowBook(int userId, string title)

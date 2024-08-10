@@ -43,7 +43,7 @@ namespace LibraryManagementSystem.Models
         }
 
 
-        public void UpdateDetails(string newAuthor, Genre? newGenre)
+        public void UpdateBookDetails(string newAuthor, Genre? newGenre)
         {
             if (!string.IsNullOrEmpty(newAuthor))
             {
