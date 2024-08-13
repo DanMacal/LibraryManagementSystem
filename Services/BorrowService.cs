@@ -74,6 +74,27 @@ namespace LibraryManagementSystem.Services
         }
 
 
+        public void ListBorrowedBooks(int userId)
+        {
+            var borrowedBooks = Library.Transactions
+                .Where(t => t.UserID == userId && !t.ReturnDate.HasValue)
+                .Select(t => t.BorrowedBook)
+                .ToList();
+
+            if (borrowedBooks.Count == 0)
+            {
+                Console.WriteLine($"User {userId} has no borrowed books.");
+                return;
+            }
+
+            Console.WriteLine($"User {userId} currently has the following borrowed books:");
+            foreach (var book in borrowedBooks)
+            {
+                Console.WriteLine($"- {book.Title} by {book.Author}");
+            }
+        }
+
+
         private int GenerateTransactionID()
         {
             return Library.Transactions.Count + 1;

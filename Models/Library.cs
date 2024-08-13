@@ -192,6 +192,7 @@ namespace LibraryManagementSystem.Models
             userService.ShowUserDetails();
         }
 
+
         // Borrow methods
         public void BorrowBook(int userId, string title)
         {
@@ -202,6 +203,28 @@ namespace LibraryManagementSystem.Models
         {
             borrowService.ReturnBook(userId, title);
         }
+
+        public void ListAllTransactions()
+        {
+            if (Transactions.Count == 0)
+            {
+                Console.WriteLine("No transactions found.");
+                return;
+            }
+
+            Console.WriteLine("List of Borrow Transactions:");
+            foreach (var transaction in Transactions)
+            {
+                Console.WriteLine(transaction.ToString());
+                Console.WriteLine(new string('-', 40));
+            }
+        }
+
+        public void ListBorrowedBooks(int userId)
+        {
+            borrowService.ListBorrowedBooks(userId);
+        }
+
     }
 }
 

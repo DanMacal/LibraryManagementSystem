@@ -9,16 +9,16 @@ namespace LibraryManagementSystem.Models
     public class Book
     {
         public string Title { get; set; }
-        public long ISBN { get; set; }
         public string Author { get; set; }
         public Genre Genre { get; set; }
+         public string ISBN { get; set; }
 
-        public Book(string title, long isbn, string author, Genre genre)
+        public Book(string title, string author, Genre genre, string isbn)
         {
             Title = title;
-            ISBN = isbn;
             Author = author;
             Genre = genre;
+            ISBN = isbn;
         }
 
 

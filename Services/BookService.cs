@@ -39,9 +39,6 @@ namespace LibraryManagementSystem.Services
         {
             Console.Clear();
 
-            Console.WriteLine("Enter ISBN:");
-            int isbn = Convert.ToInt32(Console.ReadLine());
-
             Console.WriteLine("\nEnter Title:");
             string title = Console.ReadLine();
 
@@ -69,8 +66,10 @@ namespace LibraryManagementSystem.Services
                 }
             }
 
+            Console.WriteLine("Enter ISBN:");
+            string isbn = Console.ReadLine();
 
-            Book newBook = new Book(title, isbn, author, selectedGenre);
+            Book newBook = new Book(title, author, selectedGenre, isbn);
 
             AddBook(newBook);
         }
@@ -219,7 +218,7 @@ namespace LibraryManagementSystem.Services
 
         private bool IsValidBook(Book book)
         {
-            return book != null && !string.IsNullOrEmpty(book.Title) && book.ISBN > 0 && !string.IsNullOrEmpty(book.Author);
+            return book != null && !string.IsNullOrEmpty(book.Title) && !string.IsNullOrEmpty(book.ISBN) && !string.IsNullOrEmpty(book.Author);
         }
 
 
