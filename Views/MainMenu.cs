@@ -131,7 +131,8 @@ namespace LibraryManagementSystem.Views
                         Console.WriteLine("Enter your User ID: ");
                         int userIdBorrow = Convert.ToInt32(Console.ReadLine());
 
-                        Console.WriteLine("Enter the book you want to borrow: ");
+                        library.ListBooks();
+                        Console.WriteLine("\nType the book you want to borrow: ");
                         string titleBookBorrow = Console.ReadLine();
                         library.BorrowBook(userIdBorrow, titleBookBorrow);
                         break;
