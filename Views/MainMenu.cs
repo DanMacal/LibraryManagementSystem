@@ -141,13 +141,8 @@ namespace LibraryManagementSystem.Views
                         Console.Clear();
                         Console.WriteLine("Enter your User ID: ");
                         int userIdReturn = Convert.ToInt32(Console.ReadLine());
-                        
-                        library.ListBorrowedBooks(userIdReturn);
 
-                        Console.WriteLine("Enter the book you want to return: ");
-                        Console.WriteLine();
-                        string titleBookReturn = Console.ReadLine();
-                        library.ReturnBook(userIdReturn, titleBookReturn);
+                        library.ReturnBook(userIdReturn);
                         break;
                     case "15":
                         // List Transactions

@@ -199,9 +199,9 @@ namespace LibraryManagementSystem.Models
             borrowService.BorrowBook(userId, title);
         }
 
-        public void ReturnBook(int userId, string title)
+        public void ReturnBook(int userId)
         {
-            borrowService.ReturnBook(userId, title);
+            borrowService.ReturnBook(userId);
         }
 
         public void ListAllTransactions()

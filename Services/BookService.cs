@@ -207,18 +207,13 @@ namespace LibraryManagementSystem.Services
             }
 
             Console.WriteLine("Books in the Library:");
-            foreach (var book in Books)
+            for (int i = 0; i < Books.Count; i++)
             {
+                var book = Books[i];
                 bool isBorrowed = Transactions.Any(t => t.BorrowedBook.Title.Equals(book.Title, StringComparison.OrdinalIgnoreCase) && !t.ReturnDate.HasValue);
+                string status = isBorrowed ? "(Borrowed)" : "";
 
-                if (isBorrowed)
-                {
-                    Console.WriteLine($"- (Borrowed) {book.Title} by {book.Author}");
-                }
-                else
-                {
-                    Console.WriteLine($"- {book.Title} by {book.Author}");
-                }
+                Console.WriteLine($"{i + 1}. {book.Title} by {book.Author} {status}");
             }
         }
 

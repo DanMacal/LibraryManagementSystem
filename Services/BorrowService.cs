@@ -39,8 +39,6 @@ namespace LibraryManagementSystem.Services
             t.BorrowedBook.Title.Equals(title, StringComparison.OrdinalIgnoreCase) 
             && !t.ReturnDate.HasValue);
 
-             
-
             var transaction = new BorrowTransaction
             {
                 TransactionID = GenerateTransactionID(),
@@ -57,7 +55,7 @@ namespace LibraryManagementSystem.Services
         }
 
 
-        public void ReturnBook(int userId, string title)
+        public void ReturnBook(int userId)
         {
             var user = Library.Users.FirstOrDefault(u => u.UserID == userId);
             if (user == null)
@@ -66,39 +64,56 @@ namespace LibraryManagementSystem.Services
                 return;
             }
 
-            var transaction = user.BorrowedBooks
-                .FirstOrDefault(t => t.BorrowedBook.Title == title && !t.ReturnDate.HasValue);
-
-            if (transaction == null)
+            if (user.BorrowedBooks.Count == 0)
             {
-                Console.WriteLine("Borrow transaction not found or book already returned.");
+                Console.WriteLine("No books borrowed by the user.");
                 return;
             }
 
-            transaction.ReturnDate = DateTime.Now;
+            ListBorrowedBooks(userId);
 
-            Console.WriteLine("Book returned successfully.");
+            Console.WriteLine("\nEnter the number of the book you want to return:");
+            if (int.TryParse(Console.ReadLine(), out int bookIndex) &&
+                bookIndex > 0 &&
+                bookIndex <= user.BorrowedBooks.Count)
+            {
+                var transaction = user.BorrowedBooks[bookIndex - 1];
+
+                if (transaction != null && !transaction.ReturnDate.HasValue)
+                {
+                    transaction.ReturnDate = DateTime.Now;
+                    Console.WriteLine($"Book '{transaction.BorrowedBook.Title}' returned successfully.");
+                }
+                else
+                {
+                    Console.WriteLine("Book has already been returned or transaction not found.");
+                }
+            }
+            else
+            {
+                Console.WriteLine("Invalid selection. Please enter a valid book number.");
+            }
         }
-
         
         public void ListBorrowedBooks(int userId)
         {
-            var borrowedBooks = Library.Transactions
-                .Where(t => t.UserID == userId && !t.ReturnDate.HasValue)
-                .Select(t => t.BorrowedBook)
-                .ToList();
-
-            if (borrowedBooks.Count == 0)
+            var user = Library.Users.FirstOrDefault(u => u.UserID == userId);
+            if (user == null)
             {
-                Console.WriteLine($"User {userId} has no borrowed books.");
+                Console.WriteLine("User not found.");
                 return;
             }
 
-            Console.WriteLine($"User {userId} currently has the following borrowed books:");
-            foreach (var book in borrowedBooks)
+            var borrowedBooks = user.BorrowedBooks.Where(t => !t.ReturnDate.HasValue).ToList();
+
+            Console.WriteLine();
+            Console.WriteLine("Books borrowed by the user:");
+            for (int i = 0; i < borrowedBooks.Count; i++)
             {
-                Console.WriteLine($"- {book.Title} by {book.Author}");
+                var book = borrowedBooks[i];
+                Console.WriteLine($"{i + 1}. {book.BorrowedBook.Title} by {book.BorrowedBook.Author}");
             }
+
         }
 
 
