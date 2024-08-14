@@ -21,7 +21,7 @@ namespace LibraryManagementSystem.Models
             Books = new List<Book>();
             Users = new List<User>();
             Transactions = new List<BorrowTransaction>();
-            bookService = new BookService(Books);
+            bookService = new BookService(Books, Transactions);
             userService = new UserService(Users);
             borrowService = new BorrowService(this);
         }
@@ -31,7 +31,7 @@ namespace LibraryManagementSystem.Models
             Books = books ?? new List<Book>();
             Users = users ?? new List<User>();
             Transactions = new List<BorrowTransaction>();
-            bookService = new BookService(Books);
+            bookService = new BookService(Books, Transactions);
             userService = new UserService(Users);
             borrowService = new BorrowService(this);
         }

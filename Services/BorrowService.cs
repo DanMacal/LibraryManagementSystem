@@ -34,6 +34,13 @@ namespace LibraryManagementSystem.Services
                 return;
             }
 
+            var existingTransaction = Library.Transactions
+            .FirstOrDefault(t => t.UserID == t.UserID && 
+            t.BorrowedBook.Title.Equals(title, StringComparison.OrdinalIgnoreCase) 
+            && !t.ReturnDate.HasValue);
+
+             
+
             var transaction = new BorrowTransaction
             {
                 TransactionID = GenerateTransactionID(),

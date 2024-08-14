@@ -5,6 +5,7 @@ using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 using static System.Reflection.Metadata.BlobBuilder;
 
 namespace LibraryManagementSystem.Services
@@ -12,10 +13,11 @@ namespace LibraryManagementSystem.Services
     public class BookService
     {
         private readonly List<Book> Books;
-
-        public BookService(List<Book> books)
+        private readonly List<BorrowTransaction> Transactions;
+        public BookService(List<Book> books, List<BorrowTransaction> transactions)
         {
             Books = books;
+            Transactions = transactions;
         }
 
 
@@ -79,14 +81,12 @@ namespace LibraryManagementSystem.Services
         // Search 
         public List<Book> SearchBook(string query)
         {
-            // Validate the query
             if (string.IsNullOrWhiteSpace(query))
             {
                 Console.WriteLine("Search query cannot be empty.");
                 return new List<Book>();
             }
 
-            // Search for books that match the query
             List<Book> matchingBooks = Books.FindAll(b =>
                 b.Title.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
                 b.Author.IndexOf(query, StringComparison.OrdinalIgnoreCase) >= 0 ||
@@ -200,18 +200,25 @@ namespace LibraryManagementSystem.Services
         {
             Console.Clear();
 
-            Console.WriteLine("Books in Library:");
-            Console.WriteLine();
-
             if (Books.Count == 0)
             {
-                Console.WriteLine("No books available.");
+                Console.WriteLine("No books available in the library.");
                 return;
             }
 
-            for (int i = 0; i < Books.Count; i++)
+            Console.WriteLine("Books in the Library:");
+            foreach (var book in Books)
             {
-                Console.WriteLine($"{i + 1}. {Books[i].Title}");
+                bool isBorrowed = Transactions.Any(t => t.BorrowedBook.Title.Equals(book.Title, StringComparison.OrdinalIgnoreCase) && !t.ReturnDate.HasValue);
+
+                if (isBorrowed)
+                {
+                    Console.WriteLine($"- (Borrowed) {book.Title} by {book.Author}");
+                }
+                else
+                {
+                    Console.WriteLine($"- {book.Title} by {book.Author}");
+                }
             }
         }
 
