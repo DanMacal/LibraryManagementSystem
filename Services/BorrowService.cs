@@ -34,6 +34,12 @@ namespace LibraryManagementSystem.Services
                 return;
             }
 
+            if (!book.IsAvailable)
+        {
+            Console.WriteLine("The book is currently unavailable.");
+            return;
+        }
+
             var existingTransaction = Library.Transactions
             .FirstOrDefault(t => t.UserID == t.UserID && 
             t.BorrowedBook.Title.Equals(title, StringComparison.OrdinalIgnoreCase) 
@@ -50,6 +56,7 @@ namespace LibraryManagementSystem.Services
 
             user.BorrowedBooks.Add(transaction);
             Library.Transactions.Add(transaction);
+            book.IsAvailable = false;
 
             Console.WriteLine("Book borrowed successfully.");
         }
@@ -82,7 +89,13 @@ namespace LibraryManagementSystem.Services
                 if (transaction != null && !transaction.ReturnDate.HasValue)
                 {
                     transaction.ReturnDate = DateTime.Now;
-                    Console.WriteLine($"Book '{transaction.BorrowedBook.Title}' returned successfully.");
+
+                    var book = Library.Books.FirstOrDefault(b => b.Title.Equals(transaction.BorrowedBook.Title, StringComparison.OrdinalIgnoreCase));
+                    if (book != null)
+                    {
+                        book.IsAvailable = true;
+                        Console.WriteLine($"Book '{transaction.BorrowedBook.Title}' returned successfully.");
+                    }
                 }
                 else
                 {
@@ -106,14 +119,17 @@ namespace LibraryManagementSystem.Services
 
             var borrowedBooks = user.BorrowedBooks.Where(t => !t.ReturnDate.HasValue).ToList();
 
-            Console.WriteLine();
-            Console.WriteLine("Books borrowed by the user:");
-            for (int i = 0; i < borrowedBooks.Count; i++)
+            if (borrowedBooks.Count == 0)
             {
-                var book = borrowedBooks[i];
-                Console.WriteLine($"{i + 1}. {book.BorrowedBook.Title} by {book.BorrowedBook.Author}");
+                Console.WriteLine("No books currently borrowed.");
+                return;
             }
 
+            Console.WriteLine("Books currently borrowed:");
+            for (int i = 0; i < borrowedBooks.Count; i++)
+            {
+                Console.WriteLine($"{i + 1}. {borrowedBooks[i].BorrowedBook.Title} by {borrowedBooks[i].BorrowedBook.Author}");
+            }
         }
 
 
