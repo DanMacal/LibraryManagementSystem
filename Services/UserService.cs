@@ -24,6 +24,7 @@ namespace LibraryManagementSystem.Services
             if (IsValidUser(user))
             {
                 Users.Add(user);
+                Console.WriteLine();
                 Console.WriteLine($"'{user.Name}' has been successfully added.");
             }
             else
@@ -136,6 +137,7 @@ namespace LibraryManagementSystem.Services
         public void ShowUserDetails()
         {
             ListUsers();
+            Console.WriteLine();
 
             Console.WriteLine("Enter the number of the user to view details: ");
             if (int.TryParse(Console.ReadLine(), out int index) && index >= 1 && index <= Users.Count)
@@ -145,6 +147,7 @@ namespace LibraryManagementSystem.Services
                 Console.WriteLine($"Name: {selectedUser.Name}");
                 Console.WriteLine($"Email: {selectedUser.Email}");
                 Console.WriteLine($"UserID: {selectedUser.UserID}");
+                System.Console.WriteLine();
             }
             else
             {

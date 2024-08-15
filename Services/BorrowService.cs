@@ -17,7 +17,7 @@ namespace LibraryManagementSystem.Services
         }
 
 
-
+        //////////////////////// Borrow /////////////////////////////////////////
         public void BorrowBook(int userId, string title)
         {
             var user = Library.Users.FirstOrDefault(u => u.UserID == userId);
@@ -59,11 +59,12 @@ namespace LibraryManagementSystem.Services
             Library.Transactions.Add(transaction);
             book.IsAvailable = false;
 
-            Console.WriteLine("Book borrowed successfully.");
+            Console.WriteLine($"Book '{transaction.BorrowedBook.Title}' borrowed successfully.");
+            Console.WriteLine();
         }
 
 
-
+        ///////////////////////////////// Return //////////////////////////////////////////
         public void ReturnBook(int userId)
         {
             var user = Library.Users.FirstOrDefault(u => u.UserID == userId);
@@ -97,6 +98,7 @@ namespace LibraryManagementSystem.Services
                     {
                         book.IsAvailable = true;
                         Console.WriteLine($"Book '{transaction.BorrowedBook.Title}' returned successfully.");
+                        Console.WriteLine();
                     }
                 }
                 else
@@ -111,7 +113,7 @@ namespace LibraryManagementSystem.Services
         }
         
 
-
+        ///////////////////////////////// List Borrowed Books ///////////////////////////////////////
         public void ListBorrowedBooks(int userId)
         {
             var user = Library.Users.FirstOrDefault(u => u.UserID == userId);
@@ -137,7 +139,7 @@ namespace LibraryManagementSystem.Services
         }
 
 
-
+        ///////////////////////// Extra /////////////////////////////
         private int GenerateTransactionID()
         {
             return Library.Transactions.Count + 1;

@@ -176,6 +176,7 @@ namespace LibraryManagementSystem.Services
         public void ShowBookDetails()
         {
             ListBooks();
+            Console.WriteLine();
 
             Console.Write("Enter the number of the book to view details: ");
             if (int.TryParse(Console.ReadLine(), out int index) && index >= 1 && index <= Books.Count)
@@ -186,6 +187,7 @@ namespace LibraryManagementSystem.Services
                 Console.WriteLine($"Author: {selectedBook.Author}");
                 Console.WriteLine($"Genre: {selectedBook.Genre}");
                 Console.WriteLine($"ISBN: {selectedBook.ISBN}");
+                Console.WriteLine();
             }
             else
             {
@@ -213,7 +215,7 @@ namespace LibraryManagementSystem.Services
                 bool isBorrowed = Transactions.Any(t => t.BorrowedBook.Title.Equals(book.Title, StringComparison.OrdinalIgnoreCase) && !t.ReturnDate.HasValue);
                 string status = isBorrowed ? "(Borrowed)" : "";
 
-                Console.WriteLine($"{i + 1}. {book.Title} by {book.Author} {status}");
+                Console.WriteLine($"{status} {i + 1}. {book.Title} by {book.Author}");
             }
         }
 

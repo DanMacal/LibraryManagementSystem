@@ -18,8 +18,8 @@ namespace LibraryManagementSystem.Views
                 Console.WriteLine("             Update User Details");
                 Console.WriteLine("==========================================================");
                 Console.WriteLine();
-                Console.WriteLine("Enter the title of the user to update:");
-                string name = Console.ReadLine();
+                Console.WriteLine("Enter the UserID of the user to update:");
+                string userID = Console.ReadLine();
 
                 Console.WriteLine("1. Update User Name");
                 Console.WriteLine("2. Update User Email");
@@ -36,7 +36,7 @@ namespace LibraryManagementSystem.Views
                     case "1":
                         Console.WriteLine("Enter the new name:");
                         string newName = Console.ReadLine();
-                        success = library.UpdateUserName(name, newName);
+                        success = library.UpdateUserName(userID, newName);
 
                         if (success)
                         {
@@ -51,7 +51,7 @@ namespace LibraryManagementSystem.Views
                     case "2":
                         Console.WriteLine("Enter the new Email:");
                         string newEmail = Console.ReadLine();
-                        success = library.UpdateUserName(name, newEmail);
+                        success = library.UpdateUserName(userID, newEmail);
 
                         if (success)
                         {
