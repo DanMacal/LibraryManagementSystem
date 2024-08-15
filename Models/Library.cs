@@ -199,10 +199,12 @@ namespace LibraryManagementSystem.Models
             borrowService.BorrowBook(userId, title);
         }
 
+
         public void ReturnBook(int userId)
         {
             borrowService.ReturnBook(userId);
         }
+
 
         public void ListAllTransactions()
         {
@@ -219,6 +221,7 @@ namespace LibraryManagementSystem.Models
                 Console.WriteLine(new string('-', 40));
             }
         }
+
 
         public void ListBorrowedBooks(int userId)
         {

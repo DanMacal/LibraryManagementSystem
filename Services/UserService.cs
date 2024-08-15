@@ -144,6 +144,7 @@ namespace LibraryManagementSystem.Services
                 Console.Clear();
                 Console.WriteLine($"Name: {selectedUser.Name}");
                 Console.WriteLine($"Email: {selectedUser.Email}");
+                Console.WriteLine($"UserID: {selectedUser.UserID}");
             }
             else
             {

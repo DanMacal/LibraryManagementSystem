@@ -107,7 +107,7 @@ namespace LibraryManagementSystem.Views
                         break;
                     case "9":
                         // Update - User
-                        BookUpdateMenu.ShowUpdateBookMenu(library);
+                        UserUpdateMenu.ShowUpdateUserMenu(library);
                         break;
                     case "10":
                         // Search - User

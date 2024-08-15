@@ -17,6 +17,7 @@ namespace LibraryManagementSystem.Services
         }
 
 
+
         public void BorrowBook(int userId, string title)
         {
             var user = Library.Users.FirstOrDefault(u => u.UserID == userId);
@@ -60,6 +61,7 @@ namespace LibraryManagementSystem.Services
 
             Console.WriteLine("Book borrowed successfully.");
         }
+
 
 
         public void ReturnBook(int userId)
@@ -108,6 +110,8 @@ namespace LibraryManagementSystem.Services
             }
         }
         
+
+
         public void ListBorrowedBooks(int userId)
         {
             var user = Library.Users.FirstOrDefault(u => u.UserID == userId);
@@ -131,6 +135,7 @@ namespace LibraryManagementSystem.Services
                 Console.WriteLine($"{i + 1}. {borrowedBooks[i].BorrowedBook.Title} by {borrowedBooks[i].BorrowedBook.Author}");
             }
         }
+
 
 
         private int GenerateTransactionID()
