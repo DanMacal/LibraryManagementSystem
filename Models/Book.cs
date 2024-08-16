@@ -27,21 +27,18 @@ namespace LibraryManagementSystem.Models
         public void UpdateTitle(string newTitle)
         {
             Title = newTitle;
-            Console.WriteLine($"Book title has been updated to '{newTitle}'.");
         }
 
 
         public void UpdateAuthor(string newAuthor)
         {
             Author = newAuthor;
-            Console.WriteLine($"Book author has been updated to '{newAuthor}'.");
         }
 
 
         public void UpdateGenre(Genre newGenre)
         {
             Genre = newGenre;
-            Console.WriteLine($"Book genre has been updated to '{newGenre}'.");
         }
 
 
@@ -56,8 +53,6 @@ namespace LibraryManagementSystem.Models
             {
                 UpdateGenre(newGenre.Value);
             }
-
-            Console.WriteLine($"Book '{Title}' details have been successfully updated.");
         }
 
         public override string ToString()

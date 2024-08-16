@@ -24,12 +24,12 @@ namespace LibraryManagementSystem.Services
             if (IsValidUser(user))
             {
                 Users.Add(user);
-                Console.WriteLine();
                 Console.WriteLine($"'{user.Name}' has been successfully added.");
+                Console.WriteLine();
             }
             else
             {
-                Console.WriteLine("Please enter a valid user.");
+                Console.WriteLine("Inavalid info, try again.");
             }
         }
 
@@ -46,12 +46,15 @@ namespace LibraryManagementSystem.Services
 
             Console.WriteLine("\nEnter Email: ");
             string email = Console.ReadLine();
+            Console.WriteLine();
 
             User newUser = new User(userid, name, email);
 
+            Console.WriteLine($"Created User:\nID = {newUser.UserID}\nName = {newUser.Name}\nEmail = {newUser.Email}");
+            Console.WriteLine();
+
             AddUser(newUser);
         }
-
 
 
         // Search
@@ -74,9 +77,9 @@ namespace LibraryManagementSystem.Services
      
 
         // Update
-        public bool UpdateUserName(string oldName, string newName)
+        public bool UpdateUserName(int userID, string newName)
         {
-            var user = Users.Find(u => u.Name.Equals(oldName, StringComparison.OrdinalIgnoreCase));
+            var user = Users.Find(u => u.UserID == userID);
             if (user != null)
             {
                 user.UpdateUserName(newName);
@@ -85,23 +88,24 @@ namespace LibraryManagementSystem.Services
             return false;
         }
 
-        public bool UpdateUserEmail(string name, string newEmail)
+        public bool UpdateUserEmail(int userID, string newEmail)
         {
-            var user = Users.Find(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            var user = Users.Find(u => u.UserID == userID);
             if (user != null)
             {
                 user.UpdateUserEmail(newEmail);
+                return true;
             }
             return false;
         }
 
 
-        public bool UpdateUserDetails(string name, string newEmail)
+        public bool UpdateUserDetails(int userID, string newName, string newEmail)
         {
-            var user = Users.Find(u => u.Name.Equals(name, StringComparison.OrdinalIgnoreCase));
+            var user = Users.Find(u => u.UserID == userID);
             if (user != null)
             {
-                user.UpdateUserDetails(name, newEmail);
+                user.UpdateUserDetails(newName, newEmail);
                 return true;
             }
             return false;
@@ -179,7 +183,8 @@ namespace LibraryManagementSystem.Services
 
         private bool IsValidUser(User user)
         {
-            return user != null && !string.IsNullOrEmpty(user.Name) && user.UserID > 0 && !string.IsNullOrEmpty(user.Email);
+            return user != null && user.UserID > 0 && !string.IsNullOrEmpty(user.Name) && !string.IsNullOrEmpty(user.Email);
         }
+
     }
 }

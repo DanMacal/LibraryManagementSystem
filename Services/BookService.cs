@@ -67,12 +67,12 @@ namespace LibraryManagementSystem.Services
                     Console.WriteLine("Invalid input. Please try again.");
                 }
             }
+            Console.WriteLine();
 
             Console.WriteLine("Enter ISBN:");
             string isbn = Console.ReadLine();
 
             Book newBook = new Book(title, author, selectedGenre, isbn);
-
             AddBook(newBook);
         }
 
@@ -99,9 +99,9 @@ namespace LibraryManagementSystem.Services
 
 
         // Update 
-        public bool UpdateBookTitle(string oldTitle, string newTitle)
+        public bool UpdateBookTitle(string title, string newTitle)
         {
-            var book = Books.Find(b => b.Title.Equals(oldTitle, StringComparison.OrdinalIgnoreCase));
+            var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
             if (book != null)
             {
                 book.UpdateTitle(newTitle);
@@ -140,7 +140,15 @@ namespace LibraryManagementSystem.Services
             var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
             if (book != null)
             {
-                book.UpdateBookDetails(newAuthor, newGenre);
+                if (!string.IsNullOrEmpty(newAuthor))
+                {
+                    book.UpdateAuthor(newAuthor);
+                }
+                
+                if (newGenre.HasValue)
+                {
+                    book.UpdateGenre(newGenre.Value);
+                }
                 return true;
             }
             return false;
@@ -162,6 +170,7 @@ namespace LibraryManagementSystem.Services
             {
                 Console.WriteLine();
                 Console.WriteLine($"Item {Books[removeIndex - 1]} removed successfully.");
+                Console.WriteLine();
                 Books.RemoveAt(removeIndex - 1);
             }
             else
@@ -217,6 +226,7 @@ namespace LibraryManagementSystem.Services
 
                 Console.WriteLine($"{status} {i + 1}. {book.Title} by {book.Author}");
             }
+            Console.WriteLine();
         }
 
 

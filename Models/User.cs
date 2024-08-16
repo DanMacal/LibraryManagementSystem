@@ -24,24 +24,18 @@ namespace LibraryManagementSystem.Models
         {
             Name = name;
             Email = email;
-
-            Console.WriteLine($"User's details with ID {UserID} has been successfully updated.");
         }
 
 
         public void UpdateUserName(string name)
         {
             Name = name;
-
-            Console.WriteLine($"User's name with ID {UserID} has been successfully updated.");
         }
             
 
         public void UpdateUserEmail(string email)
         {
             Email = email;
-
-            Console.WriteLine($"User's email with ID {UserID} has been successfully updated.");
         }
 
 

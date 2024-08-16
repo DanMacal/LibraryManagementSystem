@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Transactions;
 
 namespace LibraryManagementSystem.Views
 {
@@ -18,9 +19,6 @@ namespace LibraryManagementSystem.Views
                 Console.WriteLine("             Update Book Details");
                 Console.WriteLine("==========================================================");
                 Console.WriteLine();
-                Console.WriteLine("Enter the title of the book to update:");
-                string title = Console.ReadLine();
-
                 Console.WriteLine("1. Update Book Title");
                 Console.WriteLine("2. Update Book Author");
                 Console.WriteLine("3. Update Book Genre");
@@ -29,89 +27,120 @@ namespace LibraryManagementSystem.Views
                 Console.WriteLine();
                 Console.Write("Please select an option: ");
                 string updateChoice = Console.ReadLine();
-                bool success = false;
 
                 switch (updateChoice)
                 {
-                    // Title
                     case "1":
-                        Console.WriteLine("Enter the new title:");
+                        // Title
+                        Console.WriteLine();
+                        Console.WriteLine("Enter the Title of the book to update:");
+                        string title = Console.ReadLine();
+                        Console.WriteLine();
+                        Console.WriteLine("Enter the new Title:");
                         string newTitle = Console.ReadLine();
-                        success = library.UpdateBookTitle(title, newTitle);
+                        bool titleUpdated = library.UpdateBookTitle(title, newTitle);
 
-                        if (success)
+                        if (titleUpdated)
                         {
-                            Console.WriteLine("Book title updated successfully.");
+                            Console.WriteLine($"Book title has been updated to '{newTitle}'.");
                         }
                         else
                         {
-                            Console.WriteLine("Book not found.");
+                            Console.WriteLine("Book not found or update failed.");
                         }
-                        break;
-                    // Author
+                        break;  
                     case "2":
-                        Console.WriteLine("Enter the new author:");
+                        // Author
+                        Console.WriteLine("Enter the Title of the book to update:");
+                        string titleAuthor = Console.ReadLine();
+                        Console.WriteLine("Enter the new Author:");
                         string newAuthor = Console.ReadLine();
-                        library.UpdateBookAuthor(title, newAuthor);
+                        bool authorUpdated = library.UpdateBookAuthor(titleAuthor, newAuthor);
 
-                        if (success)
+                        if (authorUpdated)
                         {
-                            Console.WriteLine("Book's author updated successfully.");
+                            Console.WriteLine($"Book author has been updated to '{newAuthor}'.");
                         }
                         else
                         {
-                            Console.WriteLine("Invalid author.");
+                            Console.WriteLine("Book not found or update failed.");
                         }
                         break;
-                    // Genre
                     case "3":
-                        Console.WriteLine("Select the new genre:");
+                        // Genre
+                        Console.WriteLine("Enter the Title of the book to update:");
+                        string titleGenre = Console.ReadLine();
 
+                        Console.WriteLine("\nSelect New Genre:");
                         foreach (var genre in Enum.GetValues(typeof(Genre)))
                         {
                             Console.WriteLine($"{(int)genre}. {genre}");
                         }
 
-                        if (int.TryParse(Console.ReadLine(), out int genreInput) && Enum.IsDefined(typeof(Genre), genreInput))
+                        Genre newGenre;
+                        while (true)
                         {
-                            Genre newGenre = (Genre)genreInput;
-                            success = library.UpdateBookGenre(title, newGenre);
-                            if (success)
+                            Console.WriteLine("\nEnter the number corresponding to the genre:");
+                            if (int.TryParse(Console.ReadLine(), out int genreInput) && Enum.IsDefined(typeof(Genre), genreInput))
                             {
-                                Console.WriteLine("Book genre updated successfully.");
+                                newGenre = (Genre)genreInput;
+                                break;
                             }
                             else
-                                Console.WriteLine("Book not found.");
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
+                        }
+
+                        bool genreUpdated = library.UpdateBookGenre(titleGenre, newGenre);
+                        if (genreUpdated)
+                        {
+                            Console.WriteLine($"Book genre has been updated to '{newGenre}'.");
                         }
                         else
                         {
-                            Console.WriteLine("Invalid genre selection.");
+                            Console.WriteLine("Book not found or update failed.");
                         }
                         break;
-                    // All
                     case "4":
-                        Console.WriteLine("Enter the new author (leave empty if no change):");
-                        string updatedAuthor = Console.ReadLine();
-                        Console.WriteLine("Select the new genre (or enter 0 for no change):");
+                        // All3
+                        Console.WriteLine("Enter the Title of the book to update:");
+                        string titleUpdatedAll = Console.ReadLine();
 
+                        Console.WriteLine("Enter the new Author:");
+                        string authorUpdatedAll = Console.ReadLine();
+
+                        Console.WriteLine("\nSelect New Genre:");
                         foreach (var genre in Enum.GetValues(typeof(Genre)))
                         {
                             Console.WriteLine($"{(int)genre}. {genre}");
                         }
-                        Genre? updatedGenre = null;
 
-                        if (int.TryParse(Console.ReadLine(), out int genreInputForAll) && Enum.IsDefined(typeof(Genre), genreInputForAll))
+                        Genre newGenreAll;
+                        while (true)
                         {
-                            updatedGenre = (Genre)genreInputForAll;
+                            Console.WriteLine("\nEnter the number corresponding to the genre:");
+                            if (int.TryParse(Console.ReadLine(), out int genreInput) && Enum.IsDefined(typeof(Genre), genreInput))
+                            {
+                                newGenreAll = (Genre)genreInput;
+                                break;
+                            }
+                            else
+                            {
+                                Console.WriteLine("Invalid input. Please try again.");
+                            }
                         }
-                        success = library.UpdateBookDetails(title, updatedAuthor, updatedGenre);
 
-                        if (success)
+                        bool detailsUpdated = library.UpdateBookDetails(titleUpdatedAll, authorUpdatedAll, newGenreAll);
+
+                        if (detailsUpdated)
                         {
-                            Console.WriteLine("Book details updated successfully.");
+                            Console.WriteLine($"Book '{titleUpdatedAll}' details have been successfully updated.");
                         }
                         else
-                            Console.WriteLine("Book not found.");
+                        {
+                            Console.WriteLine("Book not found or update failed.");
+                        }
                         break;
                     case "0":
                         return;
@@ -119,6 +148,9 @@ namespace LibraryManagementSystem.Views
                         Console.WriteLine("Invalid option, please try again.");
                         break;
                 }
+
+                    Console.WriteLine("\nPress any key to return to the menu...");
+                    Console.ReadKey();
             }
         }
     }

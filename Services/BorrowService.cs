@@ -36,15 +36,16 @@ namespace LibraryManagementSystem.Services
             }
 
             if (!book.IsAvailable)
-        {
-            Console.WriteLine("The book is currently unavailable.");
-            return;
-        }
+            {
+                Console.WriteLine("The book is currently unavailable.");
+                return;
+            }
 
             var existingTransaction = Library.Transactions
-            .FirstOrDefault(t => t.UserID == t.UserID && 
-            t.BorrowedBook.Title.Equals(title, StringComparison.OrdinalIgnoreCase) 
-            && !t.ReturnDate.HasValue);
+                .FirstOrDefault(t => t.UserID == userId && 
+                t.BorrowedBook.Title.Equals(title, StringComparison.OrdinalIgnoreCase) 
+                && !t.ReturnDate.HasValue);
+
 
             var transaction = new BorrowTransaction
             {

@@ -148,27 +148,28 @@ namespace LibraryManagementSystem.Models
                 Console.WriteLine("Search Results:");
                 for (int i = 0; i < results.Count; i++)
                 {
-                    Console.WriteLine($"{i + 1}. {results[i].Name} by {results[i].Email})");
+                    Console.WriteLine($"{i + 1}. {results[i].Name} by {results[i].Email}");
                 }
             }
+            Console.WriteLine();
         }
 
 
 
         // Update
-        public bool UpdateUserName(string oldName, string newName)
+        public bool UpdateUserName(int userId, string newName)
         {
-            return userService.UpdateUserName(oldName, newName);
+            return userService.UpdateUserName(userId, newName);
         }
 
-        public bool UpdateUserEmail(string name, string newEmail)
+        public bool UpdateUserEmail(int userId, string newEmail)
         {
-            return userService.UpdateUserEmail(name, newEmail);
+            return userService.UpdateUserEmail(userId, newEmail);
         }
 
-        public bool UpdateUserDetails(string name, string newEmail)
+        public bool UpdateUserDetails(int userId, string newName, string newEmail)
         {
-            return userService.UpdateUserDetails(name, newEmail);
+            return userService.UpdateUserDetails(userId, newName, newEmail);
         }
 
 
