@@ -102,7 +102,8 @@ namespace LibraryManagementSystem.Services
         public bool UpdateBookTitle(string title, string newTitle)
         {
             var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            if (book != null)
+            
+            if (book != null && book.Title != newTitle)
             {
                 book.UpdateTitle(newTitle);
                 return true;
@@ -114,7 +115,7 @@ namespace LibraryManagementSystem.Services
         public bool UpdateBookAuthor(string title, string newAuthor)
         {
             var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            if (book != null)
+            if (book != null && book.Author != newAuthor)  
             {
                 book.UpdateAuthor(newAuthor);
                 return true;
@@ -126,7 +127,7 @@ namespace LibraryManagementSystem.Services
         public bool UpdateBookGenre(string title, Genre newGenre)
         {
             var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
-            if (book != null)
+            if (book != null && book.Genre != newGenre)
             {
                 book.UpdateGenre(newGenre);
                 return true;
@@ -135,17 +136,24 @@ namespace LibraryManagementSystem.Services
         }
 
 
-        public bool UpdateBookDetails(string title, string newAuthor, Genre? newGenre)
+        public bool UpdateBookDetails(string title, string newTitle, string newAuthor, Genre? newGenre)
         {
             var book = Books.Find(b => b.Title.Equals(title, StringComparison.OrdinalIgnoreCase));
             if (book != null)
             {
-                if (!string.IsNullOrEmpty(newAuthor))
+                if (!string.IsNullOrEmpty(newTitle) && 
+                    !book.Title.Equals(newTitle, StringComparison.OrdinalIgnoreCase))
                 {
-                    book.UpdateAuthor(newAuthor);
+                    book.UpdateTitle(newTitle); 
                 }
-                
-                if (newGenre.HasValue)
+
+                if (!string.IsNullOrEmpty(newAuthor) && 
+                    !book.Author.Equals(newAuthor, StringComparison.OrdinalIgnoreCase))
+                {
+                    book.UpdateAuthor(newAuthor); 
+                }
+
+                if (newGenre.HasValue && book.Genre != newGenre.Value)
                 {
                     book.UpdateGenre(newGenre.Value);
                 }
