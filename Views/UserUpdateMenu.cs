@@ -46,7 +46,7 @@ namespace LibraryManagementSystem.Views
                             }
                             else
                             {
-                                Console.WriteLine("User not found.");
+                                Console.WriteLine("Update failed.");
                             }
                         }
                         else
@@ -70,7 +70,7 @@ namespace LibraryManagementSystem.Views
                             }
                             else
                             {
-                                Console.WriteLine("User not found.");
+                                Console.WriteLine("Update.");
                             }
                         }
                         else
@@ -89,6 +89,7 @@ namespace LibraryManagementSystem.Views
                             Console.WriteLine();
                             Console.WriteLine("Enter the new email:");
                             string updatedEmail = Console.ReadLine();
+                            Console.WriteLine();
 
                             bool success = library.UpdateUserDetails(userID, updatedName, updatedEmail);
 
@@ -98,7 +99,7 @@ namespace LibraryManagementSystem.Views
                             }
                             else
                             {
-                                Console.WriteLine("User not found.");
+                                Console.WriteLine("Update failed.");
                             }
                         }
                         else
