@@ -80,7 +80,7 @@ namespace LibraryManagementSystem.Services
         public bool UpdateUserName(int userID, string newName)
         {
             var user = Users.Find(u => u.UserID == userID);
-            if (user != null)
+            if (user != null && user.Name != newName) 
             {
                 user.UpdateUserName(newName);
                 return true;
@@ -91,7 +91,7 @@ namespace LibraryManagementSystem.Services
         public bool UpdateUserEmail(int userID, string newEmail)
         {
             var user = Users.Find(u => u.UserID == userID);
-            if (user != null)
+            if (user != null && user.Email != newEmail)
             {
                 user.UpdateUserEmail(newEmail);
                 return true;
@@ -105,7 +105,17 @@ namespace LibraryManagementSystem.Services
             var user = Users.Find(u => u.UserID == userID);
             if (user != null)
             {
-                user.UpdateUserDetails(newName, newEmail);
+                if (!string.IsNullOrEmpty(newName) &&
+                !user.Name.Equals(newName, StringComparison.OrdinalIgnoreCase))
+                {
+                    user.UpdateUserName(newName);
+                }
+
+                if (!string.IsNullOrEmpty(newEmail) &&
+                !user.Email.Equals(newEmail, StringComparison.OrdinalIgnoreCase))
+                {
+                    user.UpdateUserEmail(newEmail);
+                }
                 return true;
             }
             return false;
