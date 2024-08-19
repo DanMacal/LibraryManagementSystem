@@ -105,6 +105,9 @@ namespace LibraryManagementSystem.Views
                     case "4":
                         // All3
                         Console.WriteLine("Enter the Title of the book to update:");
+                        string titleToUpdateAll = Console.ReadLine();
+
+                        Console.WriteLine("Enter the new Title: ");
                         string titleUpdatedAll = Console.ReadLine();
 
                         Console.WriteLine("Enter the new Author:");
@@ -131,7 +134,7 @@ namespace LibraryManagementSystem.Views
                             }
                         }
 
-                        bool detailsUpdated = library.UpdateBookDetails(titleUpdatedAll, authorUpdatedAll, newGenreAll);
+                        bool detailsUpdated = library.UpdateBookDetails(titleToUpdateAll, titleUpdatedAll, authorUpdatedAll, newGenreAll);
 
                         if (detailsUpdated)
                         {
