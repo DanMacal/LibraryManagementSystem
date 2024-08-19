@@ -90,9 +90,9 @@ namespace LibraryManagementSystem.Models
 
 
 
-        public bool UpdateBookDetails(string title, string newAuthor, Genre? newGenre)
+        public bool UpdateBookDetails(string title, string newTitle, string newAuthor, Genre? newGenre)
         {
-            return bookService.UpdateBookDetails(title, newAuthor, newGenre);
+            return bookService.UpdateBookDetails(title, newTitle, newAuthor, newGenre);
         }
 
 
