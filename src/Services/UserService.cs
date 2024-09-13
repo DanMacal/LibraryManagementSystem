@@ -24,7 +24,7 @@ namespace LibraryManagementSystem.Services
             if (IsValidUser(user))
             {
                 Users.Add(user);
-                Console.WriteLine($"'{user.Name}' has been successfully added.");
+                Console.WriteLine($"User '{user.Name}' has been successfully added.");
                 Console.WriteLine();
             }
             else
@@ -49,7 +49,9 @@ namespace LibraryManagementSystem.Services
             Console.WriteLine();
 
             User newUser = new User(userid, name, email);
-
+            
+            Console.Clear();
+            
             Console.WriteLine($"Created User:\nID = {newUser.UserID}\nName = {newUser.Name}\nEmail = {newUser.Email}");
             Console.WriteLine();
 
